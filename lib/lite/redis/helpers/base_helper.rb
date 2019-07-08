@@ -11,27 +11,27 @@ module Lite
       private
 
       def append?(order)
-        normalize_key(order) == 'append'
+        stringify_key(order) == 'append'
       end
 
       def milliseconds?(format)
-        normalize_key(format) == 'milliseconds'
-      end
-
-      def normalize_key(key)
-        key.to_s
+        stringify_key(format) == 'milliseconds'
       end
 
       def prepend?(order)
-        normalize_key(order) == 'prepend'
+        stringify_key(order) == 'prepend'
       end
 
       def seconds?(format)
-        normalize_key(format) == 'seconds'
+        stringify_key(format) == 'seconds'
+      end
+
+      def stringify_key(key)
+        key.to_s
       end
 
       def stringify_keys(keys)
-        keys.map { |key, _| normalize_key(key) }
+        keys.map { |key, _| stringify_key(key) }
       end
 
     end

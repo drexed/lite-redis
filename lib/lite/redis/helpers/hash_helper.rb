@@ -5,63 +5,63 @@ module Lite
     module HashHelper
 
       def find(key, field)
-        client.hget(normalize_key(key), field)
+        client.hget(stringify_key(key), field)
       end
 
       def find_each(key, *args)
-        client.hmget(normalize_key(key), args)
+        client.hmget(stringify_key(key), args)
       end
 
       def all(key)
-        client.hgetall(normalize_key(key))
+        client.hgetall(stringify_key(key))
       end
 
       def keys(key)
-        client.hkeys(normalize_key(key))
+        client.hkeys(stringify_key(key))
       end
 
       def values(key)
-        client.hvals(normalize_key(key))
+        client.hvals(stringify_key(key))
       end
 
       def value_length(key, field)
-        client.hstrlen(normalize_key(key), field)
+        client.hstrlen(stringify_key(key), field)
       end
 
       def count(key)
-        client.hlen(normalize_key(key))
+        client.hlen(stringify_key(key))
       end
 
       def exists?(key, field)
-        client.hexists(normalize_key(key), field)
+        client.hexists(stringify_key(key), field)
       end
 
       def create(key, field, value)
-        client.hset(normalize_key(key), field, value)
+        client.hset(stringify_key(key), field, value)
       end
 
       def create!(key, field, value)
-        client.hsetnx(normalize_key(key), field, value)
+        client.hsetnx(stringify_key(key), field, value)
       end
 
       def create_each(key, *args)
-        client.hmset(normalize_key(key), args)
+        client.hmset(stringify_key(key), args)
       end
 
       def increment(key, field, value)
         if value.is_a?(Float)
-          client.hincrbyfloat(normalize_key(key), field, value)
+          client.hincrbyfloat(stringify_key(key), field, value)
         else
-          client.hincrby(normalize_key(key), field, value)
+          client.hincrby(stringify_key(key), field, value)
         end
       end
 
       def destroy(key, *args)
-        client.hdel(normalize_key(key), args)
+        client.hdel(stringify_key(key), args)
       end
 
       def scan(key, cursor, opts = {})
-        client.hdel(normalize_key(key), cursor, opts)
+        client.hdel(stringify_key(key), cursor, opts)
       end
 
     end
