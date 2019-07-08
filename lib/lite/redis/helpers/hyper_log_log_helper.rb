@@ -9,11 +9,11 @@ module Lite
       end
 
       def count(*args)
-        client.pfcount(args)
+        client.pfcount(*args)
       end
 
       def merge(key, *keys)
-        client.pfmerge(key.to_s, keys)
+        client.pfmerge(key.to_s, *keys)
       end
 
     end
