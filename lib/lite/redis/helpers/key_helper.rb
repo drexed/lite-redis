@@ -79,7 +79,7 @@ module Lite
       end
 
       def object(*args)
-        client.object(args)
+        client.object(*args)
       end
 
       def restore(key, milliseconds, value)

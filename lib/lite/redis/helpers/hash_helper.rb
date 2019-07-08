@@ -9,7 +9,7 @@ module Lite
       end
 
       def find_each(key, *args)
-        client.hmget(key.to_s, args)
+        client.hmget(key.to_s, *args)
       end
 
       def all(key)
@@ -45,7 +45,7 @@ module Lite
       end
 
       def create_each(key, *args)
-        client.hmset(key.to_s, args)
+        client.hmset(key.to_s, *args)
       end
 
       def increment(key, field, value)
@@ -57,7 +57,7 @@ module Lite
       end
 
       def destroy(key, *args)
-        client.hdel(key.to_s, args)
+        client.hdel(key.to_s, *args)
       end
 
       def scan(key, cursor, opts = {})

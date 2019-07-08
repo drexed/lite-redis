@@ -25,7 +25,7 @@ module Lite
       end
 
       def debug(*args)
-        client.debug(args)
+        client.debug(*args)
       end
 
       def disconnect

@@ -32,12 +32,12 @@ module Lite
         client.scard(key.to_s)
       end
 
-      def create(key, *args)
+      def create(key, args)
         client.sadd(key.to_s, args)
       end
 
       def create_combination(key, *args)
-        client.sunionstore(key.to_s, args)
+        client.sunionstore(key.to_s, *args)
       end
 
       def create_difference(key, *args)
@@ -45,15 +45,15 @@ module Lite
       end
 
       def create_intersection(key, *args)
-        client.sinterstore(key.to_s, args)
+        client.sinterstore(key.to_s, *args)
       end
 
       def move(key, destination, value)
         client.smove(key.to_s, destination.to_s, value)
       end
 
-      def destroy(key, *args)
-        client.srem(key.to_s, *args)
+      def destroy(key, args)
+        client.srem(key.to_s, args)
       end
 
       def destroy_random(key)
