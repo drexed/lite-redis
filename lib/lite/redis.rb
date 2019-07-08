@@ -1,8 +1,3 @@
-require "lite/redis/version"
+# frozen_string_literal: true
 
-module Lite
-  module Redis
-    class Error < StandardError; end
-    # Your code goes here...
-  end
-end
+require 'lite/redis/version'
