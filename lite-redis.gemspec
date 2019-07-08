@@ -40,6 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'redis'
 
   spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'connection_pool'
   spec.add_development_dependency 'fasterer'
   spec.add_development_dependency 'generator_spec'
   spec.add_development_dependency 'rake'

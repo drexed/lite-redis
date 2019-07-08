@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lite-redis (0.1.0)
+    lite-redis (1.0.0)
       redis
 
 GEM
@@ -29,10 +29,11 @@ GEM
     builder (3.2.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crass (1.0.4)
     diff-lcs (1.3)
     erubi (1.8.0)
-    fasterer (0.5.1)
+    fasterer (0.6.0)
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
     generator_spec (0.9.4)
@@ -116,6 +117,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  connection_pool
   fasterer
   generator_spec
   lite-redis!
