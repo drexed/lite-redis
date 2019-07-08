@@ -33,6 +33,8 @@ GEM
     crass (1.0.4)
     diff-lcs (1.3)
     erubi (1.8.0)
+    fakeredis (0.7.0)
+      redis (>= 3.2, < 5.0)
     fasterer (0.6.0)
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
@@ -118,6 +120,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   connection_pool
+  fakeredis
   fasterer
   generator_spec
   lite-redis!
