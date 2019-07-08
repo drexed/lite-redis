@@ -2,6 +2,7 @@
 
 module Lite
   module Redis
+
     class Configuration
 
       attr_accessor :client

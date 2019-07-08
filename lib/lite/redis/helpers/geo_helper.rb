@@ -5,28 +5,28 @@ module Lite
     module GeoHelper
 
       def create
-      # TODO
-    end
+        # TODO
+      end
 
-    def hash
-      # TODO
-    end
+      def hash
+        # TODO
+      end
 
-    def position
-      # TODO
-    end
+      def position
+        # TODO
+      end
 
-    def distance
-      # TODO
-    end
+      def distance
+        # TODO
+      end
 
-    def radius
-      # TODO
-    end
+      def radius
+        # TODO
+      end
 
-    def radius_member
-      # TODO
-    end
+      def radius_member
+        # TODO
+      end
 
     end
   end

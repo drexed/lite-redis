@@ -6,48 +6,48 @@ RSpec.describe Lite::Redis::Key do
 
   describe '.exists?' do
     it 'to be false' do
-      expect(Lite::Redis::Key.exists?(:example)).to eq(false)
+      expect(described_class.exists?(:example)).to eq(false)
     end
 
     it 'to be true' do
       Lite::Redis::String.create(:example, 'hello')
 
-      expect(Lite::Redis::Key.exists?(:example)).to eq(true)
+      expect(described_class.exists?(:example)).to eq(true)
     end
   end
 
   describe '.type?' do
     it 'to be "none"' do
-      expect(Lite::Redis::Key.type?(:example)).to eq('none')
+      expect(described_class.type?(:example)).to eq('none')
     end
 
     it 'to be "string"' do
       Lite::Redis::String.create(:example, 'hello')
 
-      expect(Lite::Redis::Key.type?(:example)).to eq('string')
+      expect(described_class.type?(:example)).to eq('string')
     end
   end
 
   describe '.ttl?' do
     it 'to be 2' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.expire(:example, 2)
+      described_class.expire(:example, 2)
 
-      expect(Lite::Redis::Key.ttl?(:example)).to eq(2)
+      expect(described_class.ttl?(:example)).to eq(2)
     end
   end
 
   describe '.rename' do
     it 'to be nil' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.rename(:example, :example2)
+      described_class.rename(:example, :example2)
 
       expect(Lite::Redis::String.find(:example)).to eq(nil)
     end
 
     it 'to be "hello"' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.rename(:example, :example2)
+      described_class.rename(:example, :example2)
 
       expect(Lite::Redis::String.find(:example2)).to eq('hello')
     end
@@ -56,14 +56,14 @@ RSpec.describe Lite::Redis::Key do
   describe '.rename!' do
     it 'to be nil' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.rename!(:example, :example2)
+      described_class.rename!(:example, :example2)
 
       expect(Lite::Redis::String.find(:example)).to eq(nil)
     end
 
     it 'to be "world"' do
       Lite::Redis::String.create_each(:example, 'hello', :example2, 'world')
-      Lite::Redis::Key.rename!(:example, :example2)
+      described_class.rename!(:example, :example2)
 
       expect(Lite::Redis::String.find(:example2)).to eq('world')
     end
@@ -72,7 +72,7 @@ RSpec.describe Lite::Redis::Key do
   describe '.destroy' do
     it 'to be nil' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.destroy(:example)
+      described_class.destroy(:example)
 
       expect(Lite::Redis::String.find(:example)).to eq(nil)
     end
@@ -81,8 +81,8 @@ RSpec.describe Lite::Redis::Key do
   describe '.persist' do
     it 'to be "hello"' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.expire(:example, 2)
-      Lite::Redis::Key.persist(:example)
+      described_class.expire(:example, 2)
+      described_class.persist(:example)
       sleep(3)
 
       expect(Lite::Redis::String.find(:example)).to eq('hello')
@@ -92,7 +92,7 @@ RSpec.describe Lite::Redis::Key do
   describe '.expire' do
     it 'to be nil' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.expire(:example, 2)
+      described_class.expire(:example, 2)
       sleep(3)
 
       expect(Lite::Redis::String.find(:example)).to eq(nil)
@@ -102,7 +102,7 @@ RSpec.describe Lite::Redis::Key do
   describe '.expire_in' do
     it 'to be nil' do
       Lite::Redis::String.create(:example, 'hello')
-      Lite::Redis::Key.expire_in(:example, 2)
+      described_class.expire_in(:example, 2)
       sleep(3)
 
       expect(Lite::Redis::String.find(:example)).to eq(nil)
@@ -115,13 +115,13 @@ RSpec.describe Lite::Redis::Key do
 
   describe '.match' do
     it 'to be nil' do
-      expect(Lite::Redis::Key.match(:example)).to eq(nil)
+      expect(described_class.match(:example)).to eq(nil)
     end
 
     it 'to be ["key:a", "key:b", "key:c"]' do
       Lite::Redis::String.create_each('key:a', '1', 'key:b', '2', 'key:c', '3', 'akeyd', '4', 'key1', '5')
 
-      expect(Lite::Redis::Key.match('key:*')).to eq(['key:a', 'key:b', 'key:c'])
+      expect(described_class.match('key:*')).to eq(['key:a', 'key:b', 'key:c'])
     end
   end
 

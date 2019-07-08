@@ -2,7 +2,7 @@
 
 module AcceptanceHelper
 
-  def verify!()
+  def verify!
     expect(results).to eq(template)
   end
 

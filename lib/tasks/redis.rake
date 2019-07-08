@@ -2,7 +2,6 @@
 
 namespace :db do
   namespace :redis do
-
     desc 'Reset Redis database'
     task reset: :environment do
       puts '== Reset: reseting Redis '.ljust(80, '=')
@@ -28,6 +27,5 @@ namespace :db do
       puts "== Reset: reset all Redis (#{total_task_elapsed_time}s) ".ljust(80, '=')
       puts ''
     end
-
   end
 end

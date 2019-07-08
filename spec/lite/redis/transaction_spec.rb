@@ -3,19 +3,23 @@
 require 'spec_helper'
 
 RSpec.describe Lite::Redis::Transaction do
-  after(:each) do
-    Lite::Redis::Transaction.discard rescue nil
+  after do
+
+    described_class.discard
+  rescue StandardError
+    nil
+
   end
 
   describe '.multi' do
     it 'to be "OK"' do
-      expect(Lite::Redis::Transaction.multi).to eq('OK')
+      expect(described_class.multi).to eq('OK')
     end
 
-    response = ['OK', 'OK', true, ['1', '2']]
+    response = ['OK', 'OK', true, %w[1 2]]
 
     it 'to be #{response}' do
-      transaction = Lite::Redis::Transaction.multi do |multi|
+      transaction = described_class.multi do |multi|
         multi.set('key1', '1')
         multi.set('key2', '2')
         multi.expire('key1', 123)
@@ -28,13 +32,13 @@ RSpec.describe Lite::Redis::Transaction do
 
   describe '.discard' do
     it 'to raise error' do
-      expect { Lite::Redis::Transaction.discard }.to raise_error(Redis::CommandError)
+      expect { described_class.discard }.to raise_error(Redis::CommandError)
     end
 
     it 'to be "OK"' do
-      Lite::Redis::Transaction.multi
+      described_class.multi
 
-      expect(Lite::Redis::Transaction.discard).to eq('OK')
+      expect(described_class.discard).to eq('OK')
     end
   end
 

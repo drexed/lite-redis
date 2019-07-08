@@ -6,42 +6,42 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.authenticate' do
     it 'to be "OK"' do
-      expect(Lite::Redis::Connection.authenticate('pass')).to eq('OK')
+      expect(described_class.authenticate('pass')).to eq('OK')
     end
   end
 
   describe '.connected?' do
     it 'to be true' do
-      expect(Lite::Redis::Connection.connected?).to eq(true)
+      expect(described_class.connected?).to eq(true)
     end
   end
 
   describe '.database' do
     it 'to be 2' do
-      Lite::Redis::Connection.database(2)
+      described_class.database(2)
 
-      expect(Lite::Redis::Connection.database_id).to eq(2)
+      expect(described_class.database_id).to eq(2)
     end
   end
 
   describe '.database_id' do
     it 'to be 0' do
-      Lite::Redis::Connection.database(0)
+      described_class.database(0)
 
-      expect(Lite::Redis::Connection.database_id).to eq(0)
+      expect(described_class.database_id).to eq(0)
     end
   end
 
   describe '.database_size' do
     it 'to be 0' do
-      expect(Lite::Redis::Connection.database_size).to eq(0)
+      expect(described_class.database_size).to eq(0)
     end
 
     it 'to be 2' do
       Lite::Redis::String.create(:example1, 'one')
       Lite::Redis::String.create(:example2, 'two')
 
-      expect(Lite::Redis::Connection.database_size).to eq(2)
+      expect(described_class.database_size).to eq(2)
     end
   end
 
@@ -51,13 +51,13 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.disconnect' do
     it 'to be nil' do
-      expect(Lite::Redis::Connection.disconnect).to eq(nil)
+      expect(described_class.disconnect).to eq(nil)
     end
   end
 
   describe '.echo' do
     it 'to be "Redis"' do
-      expect(Lite::Redis::Connection.echo('Redis')).to eq('Redis')
+      expect(described_class.echo('Redis')).to eq('Redis')
     end
   end
 
@@ -65,9 +65,9 @@ RSpec.describe Lite::Redis::Connection do
     it 'to be 0' do
       Lite::Redis::String.create(:example1, 'one')
       Lite::Redis::String.create(:example2, 'two')
-      Lite::Redis::Connection.flush
+      described_class.flush
 
-      expect(Lite::Redis::Connection.database_size).to eq(0)
+      expect(described_class.database_size).to eq(0)
     end
   end
 
@@ -75,44 +75,44 @@ RSpec.describe Lite::Redis::Connection do
     it 'to be 0' do
       Lite::Redis::String.create(:example1, 'one')
       Lite::Redis::String.create(:example2, 'two')
-      Lite::Redis::Connection.flush_all
+      described_class.flush_all
 
-      expect(Lite::Redis::Connection.database_size).to eq(0)
+      expect(described_class.database_size).to eq(0)
     end
   end
 
   describe '.info' do
     info_hash = {
-      'redis_version'              => '2.6.16',
-      'connected_clients'          => '1',
-      'connected_slaves'           => '0',
-      'used_memory'                => '3187',
-      'changes_since_last_save'    => '0',
-      'last_save_time'             => '1237655729',
+      'redis_version' => '2.6.16',
+      'connected_clients' => '1',
+      'connected_slaves' => '0',
+      'used_memory' => '3187',
+      'changes_since_last_save' => '0',
+      'last_save_time' => '1237655729',
       'total_connections_received' => '1',
-      'total_commands_processed'   => '1',
-      'uptime_in_seconds'          => '36000',
-      'uptime_in_days'             => 0
+      'total_commands_processed' => '1',
+      'uptime_in_seconds' => '36000',
+      'uptime_in_days' => 0
     }
 
     it 'to be #{info_hash}' do
-      expect(Lite::Redis::Connection.info).to eq(info_hash)
+      expect(described_class.info).to eq(info_hash)
     end
 
     it 'to raise error' do
-      expect { Lite::Redis::Connection.client('Redis').info }.to raise_error(NoMethodError)
+      expect { described_class.client('Redis').info }.to raise_error(NoMethodError)
     end
   end
 
   describe '.ping' do
     it 'to be "PONG"' do
-      expect(Lite::Redis::Connection.ping).to eq('PONG')
+      expect(described_class.ping).to eq('PONG')
     end
   end
 
   describe '.quit' do
     it 'to not raise error' do
-      expect { Lite::Redis::Connection.quit }.not_to raise_error
+      expect { described_class.quit }.not_to raise_error
     end
   end
 
@@ -130,13 +130,13 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.saved_at' do
     it "to be #{Time.now.to_i}" do
-      expect(Lite::Redis::Connection.saved_at).to eq(Time.now.to_i)
+      expect(described_class.saved_at).to eq(Time.now.to_i)
     end
   end
 
   describe '.shutdown' do
     it 'to not raise error' do
-      expect { Lite::Redis::Connection.shutdown }.not_to raise_error
+      expect { described_class.shutdown }.not_to raise_error
     end
   end
 
@@ -154,7 +154,7 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.time' do
     it 'to not raise error' do
-      expect { Lite::Redis::Connection.time }.not_to raise_error
+      expect { described_class.time }.not_to raise_error
     end
   end
 
