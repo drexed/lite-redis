@@ -26,8 +26,7 @@ module Lite
         format.to_s == 'seconds'
       end
 
-      # TODO: use *
-      def stringify_keys(keys)
+      def stringify_keys(*keys)
         keys.map { |key, _| key.to_s }
       end
 

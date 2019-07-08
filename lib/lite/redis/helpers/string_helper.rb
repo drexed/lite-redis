@@ -9,7 +9,7 @@ module Lite
       end
 
       def find_each(*args)
-        args = stringify_keys(args)
+        args = stringify_keys(*args)
         client.mget(args)
       end
 
@@ -30,12 +30,12 @@ module Lite
       end
 
       def create_each(*args)
-        args = stringify_keys(args)
+        args = stringify_keys(*args)
         client.mset(args)
       end
 
       def create_each!(*args)
-        args = stringify_keys(args)
+        args = stringify_keys(*args)
         client.msetnx(args)
       end
 
