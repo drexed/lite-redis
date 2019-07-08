@@ -67,10 +67,7 @@ module Lite
       end
 
       def match(pattern = '*')
-        value = client.keys(stringify_key(pattern))
-        return if value.empty?
-
-        value
+        client.keys(stringify_key(pattern))
       end
 
       def migrate(key, options)

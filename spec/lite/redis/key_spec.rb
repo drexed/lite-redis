@@ -114,8 +114,8 @@ RSpec.describe Lite::Redis::Key do
   end
 
   describe '.match' do
-    it 'to be nil' do
-      expect(described_class.match(:example)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.match(:example)).to eq([])
     end
 
     it 'to be ["key:a", "key:b", "key:c"]' do
