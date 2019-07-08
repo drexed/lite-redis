@@ -141,7 +141,7 @@ RSpec.describe Lite::Redis::Set do
     end
 
     it 'to be ["two", "one"]' do
-      described_class.create(:example, ['one', 'two'])
+      described_class.create(:example, %w[one two])
 
       expect(described_class.find(:example)).to eq(%w[two one])
     end

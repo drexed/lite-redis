@@ -17,7 +17,7 @@ install:
 script:
 - bundle exec rspec
 - bundle exec rubocop
-- bundle exec fasterer
+# - bundle exec fasterer
 notifications:
   email: false
   slack:

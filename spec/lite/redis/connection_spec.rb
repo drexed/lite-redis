@@ -95,7 +95,7 @@ RSpec.describe Lite::Redis::Connection do
       'uptime_in_days' => 0
     }
 
-    it 'to be #{info_hash}' do
+    it 'to be { ... }' do
       expect(described_class.info).to eq(info_hash)
     end
 

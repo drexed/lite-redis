@@ -18,7 +18,7 @@ RSpec.describe Lite::Redis::Transaction do
 
     response = ['OK', 'OK', true, %w[1 2]]
 
-    it 'to be #{response}' do
+    it 'to be { ... }' do
       transaction = described_class.multi do |multi|
         multi.set('key1', '1')
         multi.set('key2', '2')

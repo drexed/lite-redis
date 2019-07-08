@@ -18,6 +18,14 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/**/*'
     - '*.gemspec'
+RSpec/EmptyExampleGroup:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/RepeatedDescription:
+  Enabled: false
 Style/Documentation:
   Enabled: false
 Style/ExpandPathArguments:

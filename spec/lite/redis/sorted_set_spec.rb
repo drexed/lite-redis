@@ -125,8 +125,9 @@ RSpec.describe Lite::Redis::SortedSet do
 
     it 'returns [["one", 1.0], ["2", 2.0]]' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
+      results = described_class.between(:example, 1, 2, with_scores: true)
 
-      expect(described_class.between(:example, 1, 2, with_scores: true)).to eq([['one', 1.0], ['2', 2.0]])
+      expect(results).to eq([['one', 1.0], ['2', 2.0]])
     end
   end
 
@@ -143,8 +144,9 @@ RSpec.describe Lite::Redis::SortedSet do
 
     it 'returns [["three", 3.0], ["2", 2.0]]' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
+      results = described_class.between_reverse(:example, 1, 2, with_scores: true)
 
-      expect(described_class.between_reverse(:example, 1, 2, with_scores: true)).to eq([['three', 3.0], ['2', 2.0]])
+      expect(results).to eq([['three', 3.0], ['2', 2.0]])
     end
   end
 
@@ -173,8 +175,9 @@ RSpec.describe Lite::Redis::SortedSet do
 
     it 'returns [["one", 1.0], ["2", 2.0]]' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
+      results = described_class.between_scores(:example, 1, 2, with_scores: true)
 
-      expect(described_class.between_scores(:example, 1, 2, with_scores: true)).to eq([['one', 1.0], ['2', 2.0]])
+      expect(results).to eq([['one', 1.0], ['2', 2.0]])
     end
   end
 
@@ -203,8 +206,9 @@ RSpec.describe Lite::Redis::SortedSet do
 
     it 'returns [["2", 2.0], ["one", 1.0]]' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
+      results = described_class.between_scores_reverse(:example, 2, 1, with_scores: true)
 
-      expect(described_class.between_scores_reverse(:example, 2, 1, with_scores: true)).to eq([['2', 2.0], ['one', 1.0]])
+      expect(results).to eq([['2', 2.0], ['one', 1.0]])
     end
   end
 

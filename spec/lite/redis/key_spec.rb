@@ -119,7 +119,9 @@ RSpec.describe Lite::Redis::Key do
     end
 
     it 'to be ["key:a", "key:b", "key:c"]' do
-      Lite::Redis::String.create_each('key:a', '1', 'key:b', '2', 'key:c', '3', 'akeyd', '4', 'key1', '5')
+      Lite::Redis::String.create_each(
+        'key:a', '1', 'key:b', '2', 'key:c', '3', 'akeyd', '4', 'key1', '5'
+      )
 
       expect(described_class.match('key:*')).to eq(['key:a', 'key:b', 'key:c'])
     end
