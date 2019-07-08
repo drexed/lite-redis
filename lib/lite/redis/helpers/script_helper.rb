@@ -5,15 +5,15 @@ module Lite
     module ScriptHelper
 
       def script(command, *args)
-        client.script(command, args)
+        client.script(command, *args)
       end
 
       def eval(*args)
-        client.eval(:eval, args)
+        client.eval(:eval, *args)
       end
 
       def evalsha(*args)
-        client.eval(:evalsha, args)
+        client.eval(:evalsha, *args)
       end
 
     end
