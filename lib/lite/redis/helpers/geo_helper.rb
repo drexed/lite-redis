@@ -4,28 +4,28 @@ module Lite
   module Redis
     module GeoHelper
 
-      def create
-        # TODO
+      def create(key, *member)
+        client.geoadd(stringify_key(key), *member)
       end
 
-      def hash
-        # TODO
+      def hash(key, member)
+        client.geohash(stringify_key(key), member)
       end
 
-      def position
-        # TODO
+      def position(key, member)
+        client.geopos(stringify_key(key), member)
       end
 
-      def distance
-        # TODO
+      def distance(key, member1, member2, unit = 'm')
+        client.geodist(stringify_key(key), member1, member2, stringify_key(unit))
       end
 
-      def radius
-        # TODO
+      def radius(*args, **geoptions)
+        client.georadius(*args, **geoptions)
       end
 
-      def radius_member
-        # TODO
+      def radius_member(*args, **geoptions)
+        client.georadiusbymember(*args, **geoptions)
       end
 
     end
