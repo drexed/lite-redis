@@ -17,7 +17,7 @@ module Lite
       end
 
       def watch(*args)
-        client.watch(args)
+        client.watch(*args)
       end
 
       def unwatch
