@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Juan Gomez']
   spec.email = %w[j.gomez@drexed.com]
 
-  spec.summary = 'Access Redis with an ActiveRecord like interface'
+  spec.summary = 'Access Redis with an ActiveRecord like ORM interface'
   spec.homepage = 'http://drexed.github.io/lite-redis'
   spec.license = 'MIT'
 
