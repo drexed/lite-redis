@@ -8,92 +8,64 @@ module Lite
         position -= 1
 
         value = client.zrange(normalize_key(key), position, position, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def find_score(key, position, opts = {})
         value = client.zrangebyscore(normalize_key(key), position, position, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def first(key, opts = {})
         value = client.zrange(normalize_key(key), 0, 0, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def first_score(key, opts = {})
         value = client.zrangebyscore(normalize_key(key), 1, 1, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def last(key, opts = {})
         value = client.zrevrange(normalize_key(key), 0, 0, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def last_score(key, opts = {})
         value = client.zrevrangebyscore(normalize_key(key), 1, 1, opts)
-        value = value.first
-
-        value
+        value.first
       end
 
       def between(key, start, finish, opts = {})
-        value = client.zrange(normalize_key(key), (start - 1), (finish - 1), opts)
-        value =
-          value
+        client.zrange(normalize_key(key), (start - 1), (finish - 1), opts)
       end
 
       def between_reverse(key, start, finish, opts = {})
-        value = client.zrevrange(normalize_key(key), (start - 1), (finish - 1), opts)
-        value =
-          value
+        client.zrevrange(normalize_key(key), (start - 1), (finish - 1), opts)
       end
 
       def between_scores(key, min, max, opts = {})
-        value = client.zrangebyscore(normalize_key(key), min, max, opts)
-        value =
-          value
+        client.zrangebyscore(normalize_key(key), min, max, opts)
       end
 
       def between_scores_reverse(key, min, max, opts = {})
-        value = client.zrevrangebyscore(normalize_key(key), min, max, opts)
-        value =
-          value
+        client.zrevrangebyscore(normalize_key(key), min, max, opts)
       end
 
       def between_lex(key, min, max, opts = {})
-        value = client.zrangebylex(normalize_key(key), min, max, opts)
-        value =
-          value
+        client.zrangebylex(normalize_key(key), min, max, opts)
       end
 
       def between_lex_reverse(key, min, max, opts = {})
-        value = client.zrevrangebylex(normalize_key(key), min, max, opts)
-        value =
-          value
+        client.zrevrangebylex(normalize_key(key), min, max, opts)
       end
 
       def all(key, opts = {})
-        value = client.zrange(normalize_key(key), 0, -1, opts)
-        value =
-          value
+        client.zrange(normalize_key(key), 0, -1, opts)
       end
 
       def all_reverse(key, opts = {})
-        value = client.zrevrange(normalize_key(key), 0, -1, opts)
-        value =
-          value
+        client.zrevrange(normalize_key(key), 0, -1, opts)
       end
 
       def position(key, value)

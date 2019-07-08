@@ -5,33 +5,23 @@ module Lite
     module HashHelper
 
       def find(key, field)
-        value = client.hget(normalize_key(key), field)
-
-        value
+        client.hget(normalize_key(key), field)
       end
 
       def find_each(key, *args)
-        value = client.hmget(normalize_key(key), args)
-
-        value
+        client.hmget(normalize_key(key), args)
       end
 
       def all(key)
-        value = client.hgetall(normalize_key(key))
-
-        value
+        client.hgetall(normalize_key(key))
       end
 
       def keys(key)
-        value = client.hkeys(normalize_key(key))
-
-        value
+        client.hkeys(normalize_key(key))
       end
 
       def values(key)
-        value = client.hvals(normalize_key(key))
-
-        value
+        client.hvals(normalize_key(key))
       end
 
       def value_length(key, field)

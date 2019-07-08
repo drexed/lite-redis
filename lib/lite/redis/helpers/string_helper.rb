@@ -5,16 +5,12 @@ module Lite
     module StringHelper
 
       def find(key)
-        value = client.get(normalize_key(key))
-
-        value
+        client.get(normalize_key(key))
       end
 
       def find_each(*args)
-        args  = stringify_keys(args)
-        value = client.mget(args)
-
-        value
+        args = stringify_keys(args)
+        client.mget(args)
       end
 
       def length(key)

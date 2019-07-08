@@ -22,10 +22,6 @@ module Lite
         key.to_s
       end
 
-      def normalize_key(key)
-        key.to_s
-      end
-
       def prepend?(order)
         order.to_s == 'prepend'
       end

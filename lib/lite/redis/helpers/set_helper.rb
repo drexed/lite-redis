@@ -5,23 +5,23 @@ module Lite
     module SetHelper
 
       def find(key)
-        value = client.smembers(normalize_key(key))
+        client.smembers(normalize_key(key))
       end
 
       def combine(*args)
-        value = client.sunion(*args)
+        client.sunion(*args)
       end
 
       def difference(*args)
-        value = client.sdiff(*args)
+        client.sdiff(*args)
       end
 
       def intersection(key, *args)
-        value = client.sinter(normalize_key(key), *args)
+        client.sinter(normalize_key(key), *args)
       end
 
       def sample(key, value = 1)
-        value = client.srandmember(normalize_key(key), value)
+        client.srandmember(normalize_key(key), value)
       end
 
       def value?(key, value)

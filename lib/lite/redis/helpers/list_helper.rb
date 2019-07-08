@@ -5,32 +5,26 @@ module Lite
     module ListHelper
 
       def find(key, position = 1)
-        value = client.lindex(normalize_key(key), (position - 1))
-
-        value
+        client.lindex(normalize_key(key), (position - 1))
       end
 
       def first(key, limit = 1)
         value = client.lrange(normalize_key(key), 0, -1)
-        value = (limit == 1 ? value.first : value.first(limit))
-
-        value
+        (limit == 1 ? value.first : value.first(limit))
       end
 
       def last(key, limit = 1)
         value = client.lrange(normalize_key(key), 0, -1)
-        value = (limit == 1 ? value.last : value.last(limit))
-
-        value
+        (limit == 1 ? value.last : value.last(limit))
       end
 
       def between(key, start = 1, finish = 0)
-        value = client.lrange(normalize_key(key), (start - 1), (finish - 1))
-          end
+        client.lrange(normalize_key(key), (start - 1), (finish - 1))
+      end
 
       def all(key)
-        value = client.lrange(normalize_key(key), 0, -1)
-          end
+        client.lrange(normalize_key(key), 0, -1)
+      end
 
       def count(key)
         client.llen(normalize_key(key))
@@ -75,15 +69,11 @@ module Lite
       end
 
       def move(key, desination)
-        value = client.rpoplpush(normalize_key(key), normalize_key(desination))
-
-        value
+        client.rpoplpush(normalize_key(key), normalize_key(desination))
       end
 
       def move_blocking(key, desination)
-        value = brpoplpush(normalize_key(key), normalize_key(desination))
-
-        value
+        brpoplpush(normalize_key(key), normalize_key(desination))
       end
 
       def destroy(key, count, value)
@@ -107,20 +97,17 @@ module Lite
       end
 
       def pop(key, order = :prepend)
-        value = append?(order) ? client.rpop(key) : client.lpop(key)
-
-        value
+        append?(order) ? client.rpop(key) : client.lpop(key)
       end
 
       def pop_blocking(keys, opts = {})
         timeout = opts[:timeout] || 0
-        value = if append?(opts[:order] || :prepend)
-                  client.brpop(keys, timeout)
-                else
-                  client.blpop(keys, timeout)
-                end
 
-        value
+        if append?(opts[:order] || :prepend)
+          client.brpop(keys, timeout)
+        else
+          client.blpop(keys, timeout)
+        end
       end
 
     end
