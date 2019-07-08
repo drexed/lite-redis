@@ -13,9 +13,11 @@ module Lite
       end
 
       def ttl?(key, format = :seconds)
-        normalized_key = normalize_key(key)
-
-        seconds?(format) ? client.ttl(normalized_key) : client.pttl(normalized_key)
+        if seconds?(format)
+          client.ttl(normalize_key(key))
+        else
+          client.pttl(normalize_key(key))
+        end
       end
 
       def sort(key, opts = {})
@@ -43,24 +45,20 @@ module Lite
       end
 
       def expire(key, seconds, format = :seconds)
-        normalized_key = normalize_key(key)
-
         if seconds?(format)
-          client.expire(normalized_key, seconds)
+          client.expire(normalize_key(key), seconds)
         else
-          client.pexpire(normalized_key, seconds)
+          client.pexpire(normalize_key(key), seconds)
         end
       end
 
       alias expire_in expire
 
       def expire_at(key, seconds, format = :seconds)
-        normalized_key = normalize_key(key)
-
         if seconds?(format)
-          client.expireat(normalized_key, seconds)
+          client.expireat(normalize_key(key), seconds)
         else
-          client.pexpireat(normalized_key, seconds)
+          client.pexpireat(normalize_key(key), seconds)
         end
       end
 
@@ -70,7 +68,8 @@ module Lite
 
       def match(pattern = '*')
         value = client.keys(normalize_key(pattern))
-        value = nil if value.empty?
+        return if value.empty?
+
         value
       end
 

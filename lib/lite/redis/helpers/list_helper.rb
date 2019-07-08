@@ -5,21 +5,25 @@ module Lite
     module ListHelper
 
       def find(key, position = 1)
-        client.lindex(normalize_key(key), (position - 1))
+        client.lindex(normalize_key(key), position - 1)
       end
 
       def first(key, limit = 1)
         value = client.lrange(normalize_key(key), 0, -1)
-        (limit == 1 ? value.first : value.first(limit))
+        return value.first if limit == 1
+
+        value.first(limit)
       end
 
       def last(key, limit = 1)
         value = client.lrange(normalize_key(key), 0, -1)
-        (limit == 1 ? value.last : value.last(limit))
+        return value.last if limit == 1
+
+        value.last(limit)
       end
 
       def between(key, start = 1, finish = 0)
-        client.lrange(normalize_key(key), (start - 1), (finish - 1))
+        client.lrange(normalize_key(key), start - 1, finish - 1)
       end
 
       def all(key)
@@ -31,29 +35,39 @@ module Lite
       end
 
       def create(key, value, order = :prepend)
-        normalized_key = normalize_key(key)
-
-        append?(order) ? client.rpush(normalized_key, value) : client.lpush(normalized_key, value)
+        if append?(order)
+          client.rpush(normalize_key(key), value)
+        else
+          client.lpush(normalize_key(key), value)
+        end
       end
 
       def create!(key, value, order = :prepend)
-        normalized_key = normalize_key(key)
-
-        append?(order) ? client.rpushx(normalized_key, value) : client.lpushx(normalized_key, value)
+        if append?(order)
+          client.rpushx(normalize_key(key), value)
+        else
+          client.lpushx(normalize_key(key), value)
+        end
       end
 
       def create_limit(key, value, limit, order = :prepend)
-        normalized_key = normalize_key(key)
+        if append?(order)
+          client.rpush(normalize_key(key), value)
+        else
+          client.lpush(normalize_key(key), value)
+        end
 
-        append?(order) ? client.rpush(normalized_key, value) : client.lpush(normalized_key, value)
-        client.ltrim(normalized_key, 0, (limit - 1))
+        client.ltrim(normalize_key(key), 0, limit - 1)
       end
 
       def create_limit!(key, value, limit, order = :prepend)
-        normalized_key = normalize_key(key)
+        if append?(order)
+          client.rpushx(normalize_key(key), value)
+        else
+          client.lpushx(normalize_key(key), value)
+        end
 
-        append?(order) ? client.rpushx(normalized_key, value) : client.lpushx(normalized_key, value)
-        client.ltrim(normalized_key, 0, (limit - 1))
+        client.ltrim(normalize_key(key), 0, limit - 1)
       end
 
       def create_before(key, pivot, value)
@@ -89,7 +103,7 @@ module Lite
       end
 
       def destroy_except(key, start, finish)
-        client.ltrim(normalize_key(key), (start - 1), (finish - 1))
+        client.ltrim(normalize_key(key), start - 1, finish - 1)
       end
 
       def destroy_all(key)
@@ -97,7 +111,11 @@ module Lite
       end
 
       def pop(key, order = :prepend)
-        append?(order) ? client.rpop(key) : client.lpop(key)
+        if append?(order)
+          client.rpop(key)
+        else
+          client.lpop(key)
+        end
       end
 
       def pop_blocking(keys, opts = {})

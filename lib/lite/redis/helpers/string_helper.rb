@@ -40,12 +40,10 @@ module Lite
       end
 
       def create_until(key, value, seconds, format = :seconds)
-        normalized_key = normalize_key(key)
-
         if seconds?(format)
-          client.setex(normalized_key, seconds, value)
+          client.setex(normalize_key(key), seconds, value)
         else
-          client.psetex(normalized_key, seconds, value)
+          client.psetex(normalize_key(key), seconds, value)
         end
       end
 
@@ -58,18 +56,20 @@ module Lite
       end
 
       def decrement(key, value = 1)
-        normalized_key = normalize_key(key)
-
-        value == 1 ? client.decr(normalized_key) : client.decrby(normalized_key, value)
+        if value == 1
+          client.decr(normalize_key(key))
+        else
+          client.decrby(normalize_key(key), value)
+        end
       end
 
       def increment(key, value = 1)
-        normalized_key = normalize_key(key)
-
         if value.is_a?(Float)
-          client.incrbyfloat(normalized_key, value)
+          client.incrbyfloat(normalize_key(key), value)
+        elsif value == 1
+          client.incr(normalize_key(key))
         else
-          value == 1 ? client.incr(normalized_key) : client.incrby(normalized_key, value)
+          client.incrby(normalize_key(key), value)
         end
       end
 

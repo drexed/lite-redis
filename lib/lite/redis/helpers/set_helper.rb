@@ -49,7 +49,7 @@ module Lite
       end
 
       def move(key, destination, value)
-        client.smove(normalize_key(key), destination.to_s, value)
+        client.smove(normalize_key(key), normalize_key(destination), value)
       end
 
       def destroy(key, *args)

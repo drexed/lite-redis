@@ -95,7 +95,7 @@ RSpec.describe Lite::Redis::Set do
 
   describe '.sample' do
     it 'to be nil' do
-      expect(described_class.sample(:example)).to eq(nil)
+      expect(described_class.sample(:example)).to eq([])
     end
 
     it 'to be ["1", "2", "4"]' do

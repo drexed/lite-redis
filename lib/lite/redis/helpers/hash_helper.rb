@@ -49,12 +49,10 @@ module Lite
       end
 
       def increment(key, field, value)
-        normalized_key = normalize_key(key)
-
         if value.is_a?(Float)
-          client.hincrbyfloat(normalized_key, field, value)
+          client.hincrbyfloat(normalize_key(key), field, value)
         else
-          client.hincrby(normalized_key, field, value)
+          client.hincrby(normalize_key(key), field, value)
         end
       end
 

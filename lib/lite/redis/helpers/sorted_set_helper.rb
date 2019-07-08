@@ -6,7 +6,6 @@ module Lite
 
       def find(key, position, opts = {})
         position -= 1
-
         value = client.zrange(normalize_key(key), position, position, opts)
         value.first
       end
@@ -37,11 +36,11 @@ module Lite
       end
 
       def between(key, start, finish, opts = {})
-        client.zrange(normalize_key(key), (start - 1), (finish - 1), opts)
+        client.zrange(normalize_key(key), start - 1, finish - 1, opts)
       end
 
       def between_reverse(key, start, finish, opts = {})
-        client.zrevrange(normalize_key(key), (start - 1), (finish - 1), opts)
+        client.zrevrange(normalize_key(key), start - 1, finish - 1, opts)
       end
 
       def between_scores(key, min, max, opts = {})
@@ -117,7 +116,7 @@ module Lite
       end
 
       def destroy_between(key, start, finish)
-        client.zremrangebyrank(normalize_key(key), (start - 1), (finish - 1))
+        client.zremrangebyrank(normalize_key(key), start - 1, finish - 1)
       end
 
       def destroy_scores(key, min, max)
