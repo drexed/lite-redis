@@ -113,8 +113,8 @@ RSpec.describe Lite::Redis::SortedSet do
   end
 
   describe '.between' do
-    it 'to be nil' do
-      expect(described_class.between(:example, 1, 2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.between(:example, 1, 2)).to eq([])
     end
 
     it 'to be ["one", "two"]' do
@@ -131,8 +131,8 @@ RSpec.describe Lite::Redis::SortedSet do
   end
 
   describe '.between_reverse' do
-    it 'to be nil' do
-      expect(described_class.between_reverse(:example, 1, 2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.between_reverse(:example, 1, 2)).to eq([])
     end
 
     it 'to be ["three", "two"]' do
@@ -149,14 +149,14 @@ RSpec.describe Lite::Redis::SortedSet do
   end
 
   describe '.between_scores' do
-    it 'to be nil' do
-      expect(described_class.between_scores(:example, 1, 2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.between_scores(:example, 1, 2)).to eq([])
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
-      expect(described_class.between_scores(:example, 100, 1)).to eq(nil)
+      expect(described_class.between_scores(:example, 100, 1)).to eq([])
     end
 
     it 'to be ["one", "2", "three"]' do
@@ -179,14 +179,14 @@ RSpec.describe Lite::Redis::SortedSet do
   end
 
   describe '.between_scores_reverse' do
-    it 'to be nil' do
-      expect(described_class.between_scores_reverse(:example, 1, 2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.between_scores_reverse(:example, 1, 2)).to eq([])
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
-      expect(described_class.between_scores_reverse(:example, 1, 100)).to eq(nil)
+      expect(described_class.between_scores_reverse(:example, 1, 100)).to eq([])
     end
 
     it 'to be ["three", "2", "one"]' do

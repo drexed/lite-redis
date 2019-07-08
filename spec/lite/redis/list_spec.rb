@@ -16,13 +16,6 @@ RSpec.describe Lite::Redis::List do
 
       expect(described_class.find(:example, 2)).to eq('2')
     end
-
-    it 'to be { ... }' do
-      response = { one: 'two', three: 4, five: ['six', 7], eight: { nine: 'ten', eleven: ['twelve', 13] } }
-      described_class.create(:example, response)
-
-      expect(described_class.find(:example)).to eq(response)
-    end
   end
 
   describe '.first' do
@@ -86,8 +79,8 @@ RSpec.describe Lite::Redis::List do
   end
 
   describe '.between' do
-    it 'to be nil' do
-      expect(described_class.between(:example)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.between(:example)).to eq([])
     end
 
     it 'to be ["2"]' do
@@ -116,8 +109,8 @@ RSpec.describe Lite::Redis::List do
   end
 
   describe '.all' do
-    it 'to be nil' do
-      expect(described_class.all(:example)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.all(:example)).to eq([])
     end
 
     it 'to be ["three", "2", "one"]' do
@@ -194,16 +187,16 @@ RSpec.describe Lite::Redis::List do
   end
 
   describe '.create!' do
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create!(:example, 2)
 
-      expect(described_class.all(:example)).to eq(nil)
+      expect(described_class.all(:example)).to eq([])
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create!(:example, [1, 2, 3, 4])
 
-      expect(described_class.all(:example)).to eq(nil)
+      expect(described_class.all(:example)).to eq([])
     end
 
     it 'to be ["three", "2", "1"]' do
@@ -297,18 +290,18 @@ RSpec.describe Lite::Redis::List do
   end
 
   describe '.create_limit!' do
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create_limit!(:example, 'one', 2)
       described_class.create_limit!(:example, 'two', 2)
       described_class.create_limit!(:example, 'three', 2)
 
-      expect(described_class.all(:example)).to eq(nil)
+      expect(described_class.all(:example)).to eq([])
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create_limit!(:example, %w[one two three], 2)
 
-      expect(described_class.all(:example)).to eq(nil)
+      expect(described_class.all(:example)).to eq([])
     end
 
     it 'to be ["three", "two"]' do
@@ -531,14 +524,14 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.destroy_all(:example)).to eq(nil)
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create(:example, 'one')
       described_class.create(:example, 'two')
       described_class.create(:example, 'three')
 
       described_class.destroy_all(:example)
 
-      expect(described_class.all(:example)).to eq(nil)
+      expect(described_class.all(:example)).to eq([])
     end
   end
 

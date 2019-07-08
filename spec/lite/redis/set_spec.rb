@@ -5,8 +5,8 @@ require 'spec_helper'
 RSpec.describe Lite::Redis::Set do
 
   describe '.find' do
-    it 'to be nil' do
-      expect(described_class.find(:example)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.find(:example)).to eq([])
     end
 
     it 'to be ["2", "1"]' do
@@ -18,8 +18,8 @@ RSpec.describe Lite::Redis::Set do
   end
 
   describe '.combine' do
-    it 'to be nil' do
-      expect(described_class.combine(:example, :example2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.combine(:example, :example2)).to eq([])
     end
 
     it 'to be ["1", "2", "4"]' do
@@ -33,17 +33,17 @@ RSpec.describe Lite::Redis::Set do
   end
 
   describe '.difference' do
-    it 'to be nil' do
-      expect(described_class.difference(:example, :example2)).to eq(nil)
+    it 'to be []' do
+      expect(described_class.difference(:example, :example2)).to eq([])
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create(:example, '1')
       described_class.create(:example, 1)
       described_class.create(:example2, '1')
       described_class.create(:example2, 1)
 
-      expect(described_class.difference(:example, :example2)).to eq(nil)
+      expect(described_class.difference(:example, :example2)).to eq([])
     end
 
     it 'to be ["1"]' do
@@ -66,11 +66,11 @@ RSpec.describe Lite::Redis::Set do
   end
 
   describe '.intersection' do
-    it 'to be nil' do
-      expect(described_class.intersection(:example, :example2, :example3)).to eq(nil)
+    it 'to be a Set object' do
+      expect(described_class.intersection(:example, :example2, :example3)).to be_a(Set)
     end
 
-    it 'to be nil' do
+    it 'to be []' do
       described_class.create(:example, '1')
       described_class.create(:example, 2)
       described_class.create(:example2, '3')
@@ -78,7 +78,7 @@ RSpec.describe Lite::Redis::Set do
       described_class.create(:example3, '5')
       described_class.create(:example3, 6)
 
-      expect(described_class.intersection(:example, :example2, :example3)).to eq(nil)
+      expect(described_class.intersection(:example, :example2, :example3)).to eq([])
     end
 
     it 'to be ["2"]' do
@@ -94,7 +94,7 @@ RSpec.describe Lite::Redis::Set do
   end
 
   describe '.sample' do
-    it 'to be nil' do
+    it 'to be []' do
       expect(described_class.sample(:example)).to eq([])
     end
 
