@@ -5,7 +5,7 @@ module Lite
     module HyperLogLogHelper
 
       def create(key, member)
-        client.pfadd(stringify_key(key), member)
+        client.pfadd(key.to_s, member)
       end
 
       def count(*args)
@@ -13,7 +13,7 @@ module Lite
       end
 
       def merge(key, *keys)
-        client.pfmerge(stringify_key(key), keys)
+        client.pfmerge(key.to_s, keys)
       end
 
     end

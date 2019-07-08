@@ -5,19 +5,19 @@ module Lite
     module GeoHelper
 
       def create(key, *member)
-        client.geoadd(stringify_key(key), *member)
+        client.geoadd(key.to_s, *member)
       end
 
       def hash(key, member)
-        client.geohash(stringify_key(key), member)
+        client.geohash(key.to_s, member)
       end
 
       def position(key, member)
-        client.geopos(stringify_key(key), member)
+        client.geopos(key.to_s, member)
       end
 
       def distance(key, member1, member2, unit = 'm')
-        client.geodist(stringify_key(key), member1, member2, stringify_key(unit))
+        client.geodist(key.to_s, member1, member2, unit.to_s)
       end
 
       def radius(*args, **geoptions)

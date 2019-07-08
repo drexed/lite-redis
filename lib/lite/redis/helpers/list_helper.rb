@@ -5,109 +5,109 @@ module Lite
     module ListHelper
 
       def find(key, position = 1)
-        client.lindex(stringify_key(key), position - 1)
+        client.lindex(key.to_s, position - 1)
       end
 
       def first(key, limit = 1)
-        value = client.lrange(stringify_key(key), 0, -1)
+        value = client.lrange(key.to_s, 0, -1)
         return value.first if limit == 1
 
         value.first(limit)
       end
 
       def last(key, limit = 1)
-        value = client.lrange(stringify_key(key), 0, -1)
+        value = client.lrange(key.to_s, 0, -1)
         return value.last if limit == 1
 
         value.last(limit)
       end
 
       def between(key, start = 1, finish = 0)
-        client.lrange(stringify_key(key), start - 1, finish - 1)
+        client.lrange(key.to_s, start - 1, finish - 1)
       end
 
       def all(key)
-        client.lrange(stringify_key(key), 0, -1)
+        client.lrange(key.to_s, 0, -1)
       end
 
       def count(key)
-        client.llen(stringify_key(key))
+        client.llen(key.to_s)
       end
 
       def create(key, value, order = :prepend)
         if append?(order)
-          client.rpush(stringify_key(key), value)
+          client.rpush(key.to_s, value)
         else
-          client.lpush(stringify_key(key), value)
+          client.lpush(key.to_s, value)
         end
       end
 
       def create!(key, value, order = :prepend)
         if append?(order)
-          client.rpushx(stringify_key(key), value)
+          client.rpushx(key.to_s, value)
         else
-          client.lpushx(stringify_key(key), value)
+          client.lpushx(key.to_s, value)
         end
       end
 
       def create_limit(key, value, limit, order = :prepend)
         if append?(order)
-          client.rpush(stringify_key(key), value)
+          client.rpush(key.to_s, value)
         else
-          client.lpush(stringify_key(key), value)
+          client.lpush(key.to_s, value)
         end
 
-        client.ltrim(stringify_key(key), 0, limit - 1)
+        client.ltrim(key.to_s, 0, limit - 1)
       end
 
       def create_limit!(key, value, limit, order = :prepend)
         if append?(order)
-          client.rpushx(stringify_key(key), value)
+          client.rpushx(key.to_s, value)
         else
-          client.lpushx(stringify_key(key), value)
+          client.lpushx(key.to_s, value)
         end
 
-        client.ltrim(stringify_key(key), 0, limit - 1)
+        client.ltrim(key.to_s, 0, limit - 1)
       end
 
       def create_before(key, pivot, value)
-        client.linsert(stringify_key(key), :before, pivot, value)
+        client.linsert(key.to_s, :before, pivot, value)
       end
 
       def create_after(key, pivot, value)
-        client.linsert(stringify_key(key), :after, pivot, value)
+        client.linsert(key.to_s, :after, pivot, value)
       end
 
       def update(key, index, value)
-        client.lset(stringify_key(key), index, value)
+        client.lset(key.to_s, index, value)
       end
 
       def move(key, desination)
-        client.rpoplpush(stringify_key(key), stringify_key(desination))
+        client.rpoplpush(key.to_s, desination.to_s)
       end
 
       def move_blocking(key, desination)
-        brpoplpush(stringify_key(key), stringify_key(desination))
+        brpoplpush(key.to_s, desination.to_s)
       end
 
       def destroy(key, count, value)
-        client.lrem(stringify_key(key), count, value)
+        client.lrem(key.to_s, count, value)
       end
 
       def destroy_first(key, limit = 1)
-        client.ltrim(stringify_key(key), limit, -1)
+        client.ltrim(key.to_s, limit, -1)
       end
 
       def destroy_last(key, limit = 1)
-        client.ltrim(stringify_key(key), 0, -(limit + 1))
+        client.ltrim(key.to_s, 0, -(limit + 1))
       end
 
       def destroy_except(key, start, finish)
-        client.ltrim(stringify_key(key), start - 1, finish - 1)
+        client.ltrim(key.to_s, start - 1, finish - 1)
       end
 
       def destroy_all(key)
-        client.ltrim(stringify_key(key), -1, 0)
+        client.ltrim(key.to_s, -1, 0)
       end
 
       def pop(key, order = :prepend)

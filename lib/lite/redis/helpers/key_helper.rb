@@ -5,23 +5,23 @@ module Lite
     module KeyHelper
 
       def exists?(key)
-        client.exists(stringify_key(key))
+        client.exists(key.to_s)
       end
 
       def type?(key)
-        client.type(stringify_key(key))
+        client.type(key.to_s)
       end
 
       def ttl?(key, format = :seconds)
         if seconds?(format)
-          client.ttl(stringify_key(key))
+          client.ttl(key.to_s)
         else
-          client.pttl(stringify_key(key))
+          client.pttl(key.to_s)
         end
       end
 
       def sort(key, opts = {})
-        client.sort(stringify_key(key), opts)
+        client.sort(key.to_s, opts)
       end
 
       def sample
@@ -29,26 +29,26 @@ module Lite
       end
 
       def rename(key, value)
-        client.rename(stringify_key(key), value.to_s)
+        client.rename(key.to_s, value.to_s)
       end
 
       def rename!(key, value)
-        client.renamenx(stringify_key(key), value.to_s)
+        client.renamenx(key.to_s, value.to_s)
       end
 
       def destroy(key)
-        client.del(stringify_key(key))
+        client.del(key.to_s)
       end
 
       def persist(key)
-        client.persist(stringify_key(key))
+        client.persist(key.to_s)
       end
 
       def expire(key, seconds, format = :seconds)
         if seconds?(format)
-          client.expire(stringify_key(key), seconds)
+          client.expire(key.to_s, seconds)
         else
-          client.pexpire(stringify_key(key), seconds)
+          client.pexpire(key.to_s, seconds)
         end
       end
 
@@ -56,26 +56,26 @@ module Lite
 
       def expire_at(key, seconds, format = :seconds)
         if seconds?(format)
-          client.expireat(stringify_key(key), seconds)
+          client.expireat(key.to_s, seconds)
         else
-          client.pexpireat(stringify_key(key), seconds)
+          client.pexpireat(key.to_s, seconds)
         end
       end
 
       def dump(key)
-        client.dump(stringify_key(key))
+        client.dump(key.to_s)
       end
 
       def match(pattern = '*')
-        client.keys(stringify_key(pattern))
+        client.keys(pattern.to_s)
       end
 
       def migrate(key, options)
-        client.migrate(stringify_key(key), options)
+        client.migrate(key.to_s, options)
       end
 
       def move(key, destination)
-        client.move(stringify_key(key), destination)
+        client.move(key.to_s, destination)
       end
 
       def object(*args)
@@ -83,7 +83,7 @@ module Lite
       end
 
       def restore(key, milliseconds, value)
-        client.restore(stringify_key(key), milliseconds, value)
+        client.restore(key.to_s, milliseconds, value)
       end
 
       def scan(cursor, opts = {})

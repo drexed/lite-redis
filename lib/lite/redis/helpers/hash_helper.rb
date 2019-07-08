@@ -5,63 +5,63 @@ module Lite
     module HashHelper
 
       def find(key, field)
-        client.hget(stringify_key(key), field)
+        client.hget(key.to_s, field)
       end
 
       def find_each(key, *args)
-        client.hmget(stringify_key(key), args)
+        client.hmget(key.to_s, args)
       end
 
       def all(key)
-        client.hgetall(stringify_key(key))
+        client.hgetall(key.to_s)
       end
 
       def keys(key)
-        client.hkeys(stringify_key(key))
+        client.hkeys(key.to_s)
       end
 
       def values(key)
-        client.hvals(stringify_key(key))
+        client.hvals(key.to_s)
       end
 
       def value_length(key, field)
-        client.hstrlen(stringify_key(key), field)
+        client.hstrlen(key.to_s, field)
       end
 
       def count(key)
-        client.hlen(stringify_key(key))
+        client.hlen(key.to_s)
       end
 
       def exists?(key, field)
-        client.hexists(stringify_key(key), field)
+        client.hexists(key.to_s, field)
       end
 
       def create(key, field, value)
-        client.hset(stringify_key(key), field, value)
+        client.hset(key.to_s, field, value)
       end
 
       def create!(key, field, value)
-        client.hsetnx(stringify_key(key), field, value)
+        client.hsetnx(key.to_s, field, value)
       end
 
       def create_each(key, *args)
-        client.hmset(stringify_key(key), args)
+        client.hmset(key.to_s, args)
       end
 
       def increment(key, field, value)
         if value.is_a?(Float)
-          client.hincrbyfloat(stringify_key(key), field, value)
+          client.hincrbyfloat(key.to_s, field, value)
         else
-          client.hincrby(stringify_key(key), field, value)
+          client.hincrby(key.to_s, field, value)
         end
       end
 
       def destroy(key, *args)
-        client.hdel(stringify_key(key), args)
+        client.hdel(key.to_s, args)
       end
 
       def scan(key, cursor, opts = {})
-        client.hdel(stringify_key(key), cursor, opts)
+        client.hdel(key.to_s, cursor, opts)
       end
 
     end
