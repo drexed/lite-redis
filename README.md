@@ -48,7 +48,7 @@ Use the [Connection Pool](https://github.com/mperham/connection_pool) gem to imp
 
 ```ruby
 Lite::Redis.configure do |config|
-  config.client = ConnectionPool.new(size: 5, timeout: 5) { Redis.new }
+  config.client = ConnectionPool::Wrapper.new(size: 5, timeout: 5) { Redis.new }
 end
 ```
 
