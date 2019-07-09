@@ -1,8 +1,11 @@
 # Lite::Redis
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lite/redis`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem Version](https://badge.fury.io/rb/lite-redis.svg)](http://badge.fury.io/rb/lite-redis)
+[![Build Status](https://travis-ci.org/drexed/lite-redis.svg?branch=master)](https://travis-ci.org/drexed/lite-redis)
 
-TODO: Delete this and the text above, and describe your gem
+Lite::Redis is a library for accessing Redis with an ActiveRecord like ORM interface.
+
+**NOTE:** If you are coming from `ActiveRedisDB`, please read the [port](#port) section.
 
 ## Installation
 
@@ -20,9 +23,71 @@ Or install it yourself as:
 
     $ gem install lite-redis
 
-## Usage
+## Table of Contents
 
-TODO: Write usage instructions here
+* [Configurations](#configurations)
+* [Connection Pool](#connection pool)
+* [Commands](#commands)
+* [Call types](#call types)
+* [Port](#port)
+
+## Configurations
+
+`rails g lite:redis:install` will generate the following file:
+`../config/initalizers/lite-redis.rb`
+
+```ruby
+Lite::Redis.configure do |config|
+  config.client = Redis.new
+end
+```
+
+## Connection pool
+
+Use the [Connection Pool](https://github.com/mperham/connection_pool) gem to improve connection performance. Also look into [hiredis](https://github.com/redis/redis-rb#hiredis) driver to improve performance even further.
+
+```ruby
+Lite::Redis.configure do |config|
+  config.client = ConnectionPool.new(size: 5, timeout: 5) { Redis.new }
+end
+```
+
+## Commands
+
+* [Connection](https://github.com/drexed/lite-redis/blob/master/docs/CONNECTION.md)
+* [Geo](https://github.com/drexed/lite-redis/blob/master/docs/GEO.md)
+* [Hash](https://github.com/drexed/lite-redis/blob/master/docs/HASH.md)
+* [Hyper Log Log](https://github.com/drexed/lite-redis/blob/master/docs/HYPER_LOG_LOG.md)
+* [Key](https://github.com/drexed/lite-redis/blob/master/docs/KEY.md)
+* [List](https://github.com/drexed/lite-redis/blob/master/docs/LIST.md)
+* [PubSub](https://github.com/drexed/lite-redis/blob/master/docs/PUB_SUB.md)
+* [Script](https://github.com/drexed/lite-redis/blob/master/docs/SCRIPT.md)
+* [Set](https://github.com/drexed/lite-redis/blob/master/docs/SET.md)
+* [Sorted Set](https://github.com/drexed/lite-redis/blob/master/docs/SORTED_SET.md)
+* [String](https://github.com/drexed/lite-redis/blob/master/docs/STRING.md)
+* [Transaction](https://github.com/drexed/lite-redis/blob/master/docs/TRANSACTION.md)
+
+## Call types
+
+There are two ways to access Redis commands, single class and multiple instance access.
+Multiple instance access reuses a Redis connection for better performance.
+
+```ruby
+# Single class access
+Lite::Redis::String.create(:example, '123')
+Lite::Redis::String.find(:example)
+
+# - or -
+
+# Multiple instance access
+string = Lite::Redis::String.new
+string.create(:example, '123')
+string.find(:example)
+```
+
+## Port
+
+`Lite::Redis` is a near compatible port of [ActiveRedisDB](https://github.com/drexed/active_redis_db).
 
 ## Development
 
