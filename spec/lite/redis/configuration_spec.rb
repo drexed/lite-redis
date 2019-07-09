@@ -10,7 +10,7 @@ RSpec.describe Lite::Redis::Configuration do
   end
 
   describe '#configure' do
-    it 'to be "foo" for client' do
+    it 'to be "foo"' do
       Lite::Redis.configuration.client = 'foo'
 
       expect(Lite::Redis.configuration.client).to eq('foo')

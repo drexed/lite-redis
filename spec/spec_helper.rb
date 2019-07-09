@@ -7,10 +7,6 @@ require 'fakeredis/rspec'
 
 spec_path = Pathname.new(File.expand_path('../spec', File.dirname(__FILE__)))
 
-Lite::Redis.configure do |config|
-  config.client = Redis.new
-end
-
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
@@ -30,4 +26,8 @@ RSpec.configure do |config|
     temp_path = spec_path.join('generators/lite/tmp')
     FileUtils.remove_dir(temp_path) if File.directory?(temp_path)
   end
+end
+
+Lite::Redis.configure do |config|
+  config.client = Redis.new
 end
