@@ -4,8 +4,12 @@ module Lite
   module Redis
     module BaseHelper
 
-      def client(new_client = nil)
-        new_client || Lite::Redis.configuration.client
+      def initialize(redis = nil)
+        @client = redis
+      end
+
+      def client(redis = nil)
+        @client ||= redis ||= Lite::Redis.configuration.client
       end
 
       private

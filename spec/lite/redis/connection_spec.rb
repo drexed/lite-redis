@@ -98,10 +98,6 @@ RSpec.describe Lite::Redis::Connection do
     it 'to be { ... }' do
       expect(described_class.info).to eq(info_hash)
     end
-
-    it 'to raise error' do
-      expect { described_class.client('Redis').info }.to raise_error(NoMethodError)
-    end
   end
 
   describe '.ping' do
