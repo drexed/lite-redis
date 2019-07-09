@@ -42,7 +42,7 @@ Lite::Redis.configure do |config|
 end
 ```
 
-## Connection pool
+## Connections
 
 Use the [Connection Pool](https://github.com/mperham/connection_pool) gem to improve connection performance. Also look into [hiredis](https://github.com/redis/redis-rb#hiredis) driver to improve performance even further.
 
@@ -67,7 +67,7 @@ end
 * [String](https://github.com/drexed/lite-redis/blob/master/docs/STRING.md)
 * [Transaction](https://github.com/drexed/lite-redis/blob/master/docs/TRANSACTION.md)
 
-## Call types
+## Callers
 
 There are two ways to access Redis commands, single class and multiple instance access.
 Multiple instance access reuses a Redis connection for better performance.
