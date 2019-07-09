@@ -26,9 +26,9 @@ Or install it yourself as:
 ## Table of Contents
 
 * [Configurations](#configurations)
-* [Connection Pool](#connection pool)
+* [Connections](#connections)
 * [Commands](#commands)
-* [Call types](#call types)
+* [Callers](#callers)
 * [Port](#port)
 
 ## Configurations
