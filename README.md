@@ -26,7 +26,7 @@ Or install it yourself as:
 ## Table of Contents
 
 * [Configurations](#configurations)
-* [Connections](#connections)
+* [Pooling](#pooling)
 * [Commands](#commands)
 * [Callers](#callers)
 * [Port](#port)
@@ -42,9 +42,9 @@ Lite::Redis.configure do |config|
 end
 ```
 
-## Connections
+## Pooling
 
-Use the [Connection Pool](https://github.com/mperham/connection_pool) gem to improve connection performance. Also look into [hiredis](https://github.com/redis/redis-rb#hiredis) driver to improve performance even further.
+Use the [Connection Pool](https://github.com/mperham/connection_pool) gem to improve connection performance. Also look into [hiredis](https://github.com/redis/redis-rb#hiredis) driver to improve performance even further lists and ranges.
 
 ```ruby
 Lite::Redis.configure do |config|
