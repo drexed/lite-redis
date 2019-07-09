@@ -4,12 +4,14 @@ module Lite
   module Redis
     module BaseHelper
 
+      attr_writer :client
+
       def initialize(redis = nil)
         @client = redis
       end
 
-      def client(redis = nil)
-        @client ||= redis ||= Lite::Redis.configuration.client
+      def client
+        @client ||= Lite::Redis.configuration.client
       end
 
       private
