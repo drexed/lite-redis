@@ -72,7 +72,7 @@ RSpec.describe Lite::Redis::Hash do
       expect(described_class.exists?(:example, :bday)).to eq(false)
     end
 
-    it 'to be false' do
+    it 'to be false with both missing keys' do
       described_class.create(:example, :name, 'redis')
 
       expect(described_class.exists?(:example2, :bday)).to eq(false)
@@ -94,7 +94,7 @@ RSpec.describe Lite::Redis::Hash do
       expect(described_class.find(:example, :name)).to eq('hello')
     end
 
-    it 'to be "hello"' do
+    it 'to be "hello" when trying to override' do
       described_class.create!(:example, :name, 'hello')
       described_class.create!(:example, :name, 'world')
 

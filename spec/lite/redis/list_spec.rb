@@ -157,7 +157,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[four three 2 1])
     end
 
-    it 'to be ["three", "2", "1"]' do
+    it 'to be ["three", "2", "1"] with prepend option' do
       described_class.create(:example, '1')
       described_class.create(:example, 2, :prepend)
       described_class.create(:example, 'three')
@@ -165,13 +165,13 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[three 2 1])
     end
 
-    it 'to be ["four", "three", "2", "1"]' do
+    it 'to be ["four", "three", "2", "1"] with prepend option' do
       described_class.create(:example, %w[1 2 three four], :prepend)
 
       expect(described_class.all(:example)).to eq(%w[four three 2 1])
     end
 
-    it 'to be ["three", "1", "2"]' do
+    it 'to be ["three", "1", "2"] with append option' do
       described_class.create(:example, '1')
       described_class.create(:example, 2, :append)
       described_class.create(:example, 'three')
@@ -193,7 +193,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq([])
     end
 
-    it 'to be []' do
+    it 'to be [] when creating multiple' do
       described_class.create!(:example, [1, 2, 3, 4])
 
       expect(described_class.all(:example)).to eq([])
@@ -214,7 +214,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[four three 2 1])
     end
 
-    it 'to be ["three", "2", "1"]' do
+    it 'to be ["three", "2", "1"] with prepend option' do
       described_class.create(:example, '1')
       described_class.create!(:example, 2, :prepend)
       described_class.create!(:example, 'three')
@@ -222,14 +222,14 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[three 2 1])
     end
 
-    it 'to be ["four", "three", "2", "1"]' do
+    it 'to be ["four", "three", "2", "1"] with prepend option' do
       described_class.create(:example, '1')
       described_class.create!(:example, [2, 'three', 'four'], :prepend)
 
       expect(described_class.all(:example)).to eq(%w[four three 2 1])
     end
 
-    it 'to be ["three", "1", "2"]' do
+    it 'to be ["three", "1", "2"] with append option' do
       described_class.create(:example, '1')
       described_class.create!(:example, 2, :append)
       described_class.create!(:example, 'three')
@@ -260,7 +260,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[four three two])
     end
 
-    it 'to be ["three", "two"]' do
+    it 'to be ["three", "two"] with prepend option' do
       described_class.create_limit(:example, 'one', 2)
       described_class.create_limit(:example, 'two', 2, :prepend)
       described_class.create_limit(:example, 'three', 2)
@@ -268,7 +268,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[three two])
     end
 
-    it 'to be ["four", "three", "two"]' do
+    it 'to be ["four", "three", "two"] with prepend option' do
       described_class.create_limit(:example, %w[one two three four], 3, :prepend)
 
       expect(described_class.all(:example)).to eq(%w[four three two])
@@ -298,7 +298,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq([])
     end
 
-    it 'to be []' do
+    it 'to be [] when creating multiple at a time' do
       described_class.create_limit!(:example, %w[one two three], 2)
 
       expect(described_class.all(:example)).to eq([])
@@ -319,7 +319,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[four three two])
     end
 
-    it 'to be ["three", "two"]' do
+    it 'to be ["three", "two"] with prepend option' do
       described_class.create_limit(:example, 'one', 2)
       described_class.create_limit!(:example, 'two', 2, :prepend)
       described_class.create_limit!(:example, 'three', 2)
@@ -327,7 +327,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example)).to eq(%w[three two])
     end
 
-    it 'to be ["four", "three", "two"]' do
+    it 'to be ["four", "three", "two"] with prepend option' do
       described_class.create_limit(:example, 'one', 3)
       described_class.create_limit!(:example, %w[two three four], 3, :prepend)
 
@@ -404,7 +404,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.move(:example1, :example2)).to eq('3')
     end
 
-    it 'to be ["1", "two", "3"]' do
+    it 'to be ["1", "two"]' do
       described_class.create(:example1, 1, :append)
       described_class.create(:example1, 'two', :append)
       described_class.create(:example1, '3', :append)
@@ -414,7 +414,7 @@ RSpec.describe Lite::Redis::List do
       expect(described_class.all(:example1)).to eq(%w[1 two])
     end
 
-    it 'to be ["1", "two", "3"]' do
+    it 'to be ["3"]' do
       described_class.create(:example1, 1, :append)
       described_class.create(:example1, 'two', :append)
       described_class.create(:example1, '3', :append)

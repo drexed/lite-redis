@@ -72,7 +72,7 @@ RSpec.describe Lite::Redis::String do
       expect(described_class.find(:example)).to eq('2')
     end
 
-    it 'to be "1"' do
+    it 'to be "1" with nx option' do
       described_class.create(:example, '1')
       described_class.create(:example, '2', nx: true)
 
@@ -85,7 +85,7 @@ RSpec.describe Lite::Redis::String do
       expect(described_class.find(:example)).to eq(nil)
     end
 
-    it 'to be "1"' do
+    it 'to be "1" with ex option' do
       described_class.create(:example, '1', ex: 1)
 
       expect(described_class.find(:example)).to eq('1')
@@ -99,7 +99,7 @@ RSpec.describe Lite::Redis::String do
       expect(described_class.find(:example)).to eq('1')
     end
 
-    it 'to be "1"' do
+    it 'to be "1" when trying to override' do
       described_class.create(:example, '1')
       described_class.create!(:example, '2')
 

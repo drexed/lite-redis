@@ -37,7 +37,7 @@ RSpec.describe Lite::Redis::Set do
       expect(described_class.difference(:example, :example2)).to eq([])
     end
 
-    it 'to be []' do
+    it 'to be [] when there is no difference' do
       described_class.create(:example, '1')
       described_class.create(:example, 1)
       described_class.create(:example2, '1')

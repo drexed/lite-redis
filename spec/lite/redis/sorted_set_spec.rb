@@ -155,7 +155,7 @@ RSpec.describe Lite::Redis::SortedSet do
       expect(described_class.between_scores(:example, 1, 2)).to eq([])
     end
 
-    it 'to be []' do
+    it 'to be [] with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
       expect(described_class.between_scores(:example, 100, 1)).to eq([])
@@ -186,7 +186,7 @@ RSpec.describe Lite::Redis::SortedSet do
       expect(described_class.between_scores_reverse(:example, 1, 2)).to eq([])
     end
 
-    it 'to be []' do
+    it 'to be [] with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
       expect(described_class.between_scores_reverse(:example, 1, 100)).to eq([])
@@ -255,7 +255,7 @@ RSpec.describe Lite::Redis::SortedSet do
       expect(described_class.position(:example, 'one')).to eq(nil)
     end
 
-    it 'to be nil' do
+    it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
       expect(described_class.position(:example, 'four')).to eq(nil)
@@ -273,7 +273,7 @@ RSpec.describe Lite::Redis::SortedSet do
       expect(described_class.position_reverse(:example, 'one')).to eq(nil)
     end
 
-    it 'to be nil' do
+    it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
       expect(described_class.position_reverse(:example, 'four')).to eq(nil)
@@ -291,7 +291,7 @@ RSpec.describe Lite::Redis::SortedSet do
       expect(described_class.score(:example, 'one')).to eq(nil)
     end
 
-    it 'to be nil' do
+    it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
       expect(described_class.score(:example, 'four')).to eq(nil)
