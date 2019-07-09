@@ -11,12 +11,6 @@ Lite::Redis.configure do |config|
   config.client = Redis.new
 end
 
-%w[helpers].each do |dir|
-  Dir.each_child(spec_path.join("support/#{dir}")) do |f|
-    load(spec_path.join("support/#{dir}/#{f}"))
-  end
-end
-
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
@@ -36,6 +30,4 @@ RSpec.configure do |config|
     temp_path = spec_path.join('generators/lite/tmp')
     FileUtils.remove_dir(temp_path) if File.directory?(temp_path)
   end
-
-  config.include AcceptanceHelper
 end
