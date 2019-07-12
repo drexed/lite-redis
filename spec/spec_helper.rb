@@ -5,6 +5,10 @@ require 'lite/redis'
 require 'generator_spec'
 require 'fakeredis/rspec'
 
+Lite::Redis.configure do |config|
+  config.client = Redis.new
+end
+
 spec_path = Pathname.new(File.expand_path('../spec', File.dirname(__FILE__)))
 
 RSpec.configure do |config|
@@ -26,8 +30,4 @@ RSpec.configure do |config|
     temp_path = spec_path.join('generators/lite/tmp')
     FileUtils.remove_dir(temp_path) if File.directory?(temp_path)
   end
-end
-
-Lite::Redis.configure do |config|
-  config.client = Redis.new
 end
