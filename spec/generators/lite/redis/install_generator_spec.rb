@@ -10,7 +10,7 @@ RSpec.describe Lite::Redis::InstallGenerator, type: :generator do
     run_generator
   end
 
-  let(:sample_path) { 'spec/generators/lite/tmp/config/initializers/lite-redis.rb' }
+  let(:sample_path) { 'spec/generators/lite/tmp/config/initializers/lite_redis.rb' }
 
   describe '#generator' do
     it 'to be true when sample file exists' do

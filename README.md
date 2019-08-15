@@ -34,7 +34,7 @@ Or install it yourself as:
 ## Configurations
 
 `rails g lite:redis:install` will generate the following file:
-`../config/initalizers/lite-redis.rb`
+`../config/initalizers/lite_redis.rb`
 
 ```ruby
 Lite::Redis.configure do |config|
