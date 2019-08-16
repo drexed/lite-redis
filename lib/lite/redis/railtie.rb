@@ -7,8 +7,8 @@ module Lite
     class Railtie < ::Rails::Railtie
 
       rake_tasks do
-        path = File.expand_path('../../tasks/*.rake', __FILE__)
-        Dir.each_child(path) { |filename| load(filename) }
+        file = File.expand_path('../../../tasks/redis.rake', __FILE__)
+        load(file)
       end
 
     end
