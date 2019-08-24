@@ -5,9 +5,7 @@ require 'lite/redis'
 require 'generator_spec'
 require 'fakeredis/rspec'
 
-Lite::Redis.configure do |config|
-  config.client = Redis.new
-end
+Lite::Redis.reset_configuration!
 
 spec_path = Pathname.new(File.expand_path('../spec', File.dirname(__FILE__)))
 
