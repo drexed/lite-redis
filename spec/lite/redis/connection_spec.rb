@@ -71,7 +71,7 @@ RSpec.describe Lite::Redis::Connection do
     end
   end
 
-  describe '.flush' do
+  describe '.flush_all' do
     it 'to be 0' do
       Lite::Redis::String.create(:example1, 'one')
       Lite::Redis::String.create(:example2, 'two')
