@@ -83,7 +83,7 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.info' do
     info_hash = {
-      'redis_version' => '2.6.16',
+      'redis_version' => '3.3.5',
       'connected_clients' => '1',
       'connected_slaves' => '0',
       'used_memory' => '3187',

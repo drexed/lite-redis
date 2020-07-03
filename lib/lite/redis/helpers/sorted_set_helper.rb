@@ -6,65 +6,65 @@ module Lite
 
       def find(key, position, opts = {})
         position -= 1
-        value = client.zrange(key.to_s, position, position, opts)
+        value = client.zrange(key.to_s, position, position, **opts)
         value.first
       end
 
       def find_score(key, position, opts = {})
-        value = client.zrangebyscore(key.to_s, position, position, opts)
+        value = client.zrangebyscore(key.to_s, position, position, **opts)
         value.first
       end
 
       def first(key, opts = {})
-        value = client.zrange(key.to_s, 0, 0, opts)
+        value = client.zrange(key.to_s, 0, 0, **opts)
         value.first
       end
 
       def first_score(key, opts = {})
-        value = client.zrangebyscore(key.to_s, 1, 1, opts)
+        value = client.zrangebyscore(key.to_s, 1, 1, **opts)
         value.first
       end
 
       def last(key, opts = {})
-        value = client.zrevrange(key.to_s, 0, 0, opts)
+        value = client.zrevrange(key.to_s, 0, 0, **opts)
         value.first
       end
 
       def last_score(key, opts = {})
-        value = client.zrevrangebyscore(key.to_s, 1, 1, opts)
+        value = client.zrevrangebyscore(key.to_s, 1, 1, **opts)
         value.first
       end
 
       def between(key, start, finish, opts = {})
-        client.zrange(key.to_s, start - 1, finish - 1, opts)
+        client.zrange(key.to_s, start - 1, finish - 1, **opts)
       end
 
       def between_reverse(key, start, finish, opts = {})
-        client.zrevrange(key.to_s, start - 1, finish - 1, opts)
+        client.zrevrange(key.to_s, start - 1, finish - 1, **opts)
       end
 
       def between_scores(key, min, max, opts = {})
-        client.zrangebyscore(key.to_s, min, max, opts)
+        client.zrangebyscore(key.to_s, min, max, **opts)
       end
 
       def between_scores_reverse(key, min, max, opts = {})
-        client.zrevrangebyscore(key.to_s, min, max, opts)
+        client.zrevrangebyscore(key.to_s, min, max, **opts)
       end
 
       def between_lex(key, min, max, opts = {})
-        client.zrangebylex(key.to_s, min, max, opts)
+        client.zrangebylex(key.to_s, min, max, **opts)
       end
 
       def between_lex_reverse(key, min, max, opts = {})
-        client.zrevrangebylex(key.to_s, min, max, opts)
+        client.zrevrangebylex(key.to_s, min, max, **opts)
       end
 
       def all(key, opts = {})
-        client.zrange(key.to_s, 0, -1, opts)
+        client.zrange(key.to_s, 0, -1, **opts)
       end
 
       def all_reverse(key, opts = {})
-        client.zrevrange(key.to_s, 0, -1, opts)
+        client.zrevrange(key.to_s, 0, -1, **opts)
       end
 
       def position(key, value)
@@ -96,11 +96,11 @@ module Lite
       end
 
       def create_intersection(key, keys, opts = {})
-        client.zinterstore(key.to_s, keys, opts)
+        client.zinterstore(key.to_s, keys, **opts)
       end
 
       def create_combination(key, keys, opts = {})
-        client.zunionstore(key.to_s, keys, opts)
+        client.zunionstore(key.to_s, keys, **opts)
       end
 
       def increment(key, value, count)
@@ -124,11 +124,11 @@ module Lite
       end
 
       def destroy_lex(key, min, max, opts = {})
-        client.zrevrangebylex(key.to_s, max, min, opts)
+        client.zrevrangebylex(key.to_s, max, min, **opts)
       end
 
       def scan(key, cursor, opts = {})
-        client.zscan(key.to_s, cursor, opts)
+        client.zscan(key.to_s, cursor, **opts)
       end
 
     end

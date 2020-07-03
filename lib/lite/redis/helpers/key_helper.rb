@@ -21,7 +21,7 @@ module Lite
       end
 
       def sort(key, opts = {})
-        client.sort(key.to_s, opts)
+        client.sort(key.to_s, **opts)
       end
 
       def sample
@@ -87,7 +87,7 @@ module Lite
       end
 
       def scan(cursor, opts = {})
-        client.scan(cursor, opts)
+        client.scan(cursor, **opts)
       end
 
     end

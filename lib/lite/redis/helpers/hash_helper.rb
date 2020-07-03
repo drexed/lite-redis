@@ -61,7 +61,7 @@ module Lite
       end
 
       def scan(key, cursor, opts = {})
-        client.hdel(key.to_s, cursor, opts)
+        client.hdel(key.to_s, cursor, **opts)
       end
 
     end

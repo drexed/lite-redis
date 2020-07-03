@@ -8,6 +8,8 @@ module Lite
       attr_accessor :client
 
       def initialize
+        ::Redis.exists_returns_integer = true
+
         @client = ::Redis.new
       end
 

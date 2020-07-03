@@ -22,7 +22,7 @@ module Lite
       end
 
       def create(key, value, opts = {})
-        client.set(key.to_s, value, opts)
+        client.set(key.to_s, value, **opts)
       end
 
       def create!(key, value)
