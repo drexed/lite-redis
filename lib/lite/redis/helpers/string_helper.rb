@@ -64,12 +64,10 @@ module Lite
       end
 
       def increment(key, value = 1)
-        if value.is_a?(Float)
-          client.incrbyfloat(key.to_s, value)
-        elsif value == 1
-          client.incr(key.to_s)
-        else
-          client.incrby(key.to_s, value)
+        case value
+        when Float then client.incrbyfloat(key.to_s, value)
+        when 1 then client.incr(key.to_s)
+        else client.incrby(key.to_s, value)
         end
       end
 
