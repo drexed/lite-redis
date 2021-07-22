@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'rails/generators'
+require 'rails/railtie'
 require 'lite/redis'
-require 'generator_spec'
 require 'fakeredis/rspec'
+require 'generator_spec'
 
 Lite::Redis.reset_configuration!
 

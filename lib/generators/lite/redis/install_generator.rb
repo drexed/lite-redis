@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails/generators'
-
 module Lite
   module Redis
     class InstallGenerator < Rails::Generators::Base

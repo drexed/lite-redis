@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require 'redis'
+require 'redis' unless defined?(Redis)
 
+require 'generators/lite/redis/install_generator' if defined?(Rails::Generators)
+
+require 'lite/redis/railtie' if defined?(Rails::Railtie)
 require 'lite/redis/version'
-require 'lite/redis/railtie' if defined?(Rails)
 require 'lite/redis/configuration'
 
 %w[
@@ -12,5 +14,3 @@ require 'lite/redis/configuration'
   require "lite/redis/helpers/#{file_name}_helper"
   require "lite/redis/#{file_name}"
 end
-
-require 'generators/lite/redis/install_generator'
