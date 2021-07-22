@@ -3,9 +3,10 @@
 require 'bundler/setup'
 require 'rails/generators'
 require 'rails/railtie'
-require 'lite/redis'
 require 'fakeredis/rspec'
 require 'generator_spec'
+
+require 'lite/redis'
 
 Lite::Redis.reset_configuration!
 
