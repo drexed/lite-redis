@@ -6,7 +6,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.find' do
     it 'to be nil' do
-      expect(described_class.find(:example, 1)).to eq(nil)
+      expect(described_class.find(:example, 1)).to be_nil
     end
 
     it 'to be "two"' do
@@ -24,7 +24,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.find_score' do
     it 'to be nil' do
-      expect(described_class.find_score(:example, 1)).to eq(nil)
+      expect(described_class.find_score(:example, 1)).to be_nil
     end
 
     it 'to be "two"' do
@@ -42,7 +42,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.first' do
     it 'to be nil' do
-      expect(described_class.first(:example)).to eq(nil)
+      expect(described_class.first(:example)).to be_nil
     end
 
     it 'to be "1"' do
@@ -60,7 +60,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.first_score' do
     it 'to be nil' do
-      expect(described_class.first_score(:example)).to eq(nil)
+      expect(described_class.first_score(:example)).to be_nil
     end
 
     it 'to be "1"' do
@@ -78,7 +78,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.last' do
     it 'to be nil' do
-      expect(described_class.last(:example)).to eq(nil)
+      expect(described_class.last(:example)).to be_nil
     end
 
     it 'to be "3"' do
@@ -96,7 +96,7 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.last_score' do
     it 'to be nil' do
-      expect(described_class.last_score(:example)).to eq(nil)
+      expect(described_class.last_score(:example)).to be_nil
     end
 
     it 'to be "1"' do
@@ -252,13 +252,13 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.position' do
     it 'to be nil' do
-      expect(described_class.position(:example, 'one')).to eq(nil)
+      expect(described_class.position(:example, 'one')).to be_nil
     end
 
     it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
-      expect(described_class.position(:example, 'four')).to eq(nil)
+      expect(described_class.position(:example, 'four')).to be_nil
     end
 
     it 'to be 3' do
@@ -270,13 +270,13 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.position_reverse' do
     it 'to be nil' do
-      expect(described_class.position_reverse(:example, 'one')).to eq(nil)
+      expect(described_class.position_reverse(:example, 'one')).to be_nil
     end
 
     it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
-      expect(described_class.position_reverse(:example, 'four')).to eq(nil)
+      expect(described_class.position_reverse(:example, 'four')).to be_nil
     end
 
     it 'to be 3' do
@@ -288,13 +288,13 @@ RSpec.describe Lite::Redis::SortedSet do
 
   describe '.score' do
     it 'to be nil' do
-      expect(described_class.score(:example, 'one')).to eq(nil)
+      expect(described_class.score(:example, 'one')).to be_nil
     end
 
     it 'to be nil with no options found' do
       described_class.create(:example, 1, 'one', 2, '2', 3, 'three')
 
-      expect(described_class.score(:example, 'four')).to eq(nil)
+      expect(described_class.score(:example, 'four')).to be_nil
     end
 
     it 'to be 3' do
@@ -368,7 +368,7 @@ RSpec.describe Lite::Redis::SortedSet do
       described_class.create(:example, 2, 'two')
       described_class.create(:example, 3, 'three')
 
-      expect(described_class.destroy(:example, 'two')).to eq(true)
+      expect(described_class.destroy(:example, 'two')).to be(true)
       expect(described_class.find(:example, 2)).to eq('three')
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe Lite::Redis::String do
 
   describe '.find' do
     it 'to be nil' do
-      expect(described_class.find(:example)).to eq(nil)
+      expect(described_class.find(:example)).to be_nil
     end
 
     it 'to be "123"' do
@@ -48,7 +48,7 @@ RSpec.describe Lite::Redis::String do
 
   describe '.split' do
     it 'to be nil' do
-      expect(described_class.split(:example, 0, 3)).to eq(nil)
+      expect(described_class.split(:example, 0, 3)).to be_nil
     end
 
     it 'to be "hel"' do
@@ -82,7 +82,7 @@ RSpec.describe Lite::Redis::String do
     it 'to be nil' do
       described_class.create(:example, '1', xx: true)
 
-      expect(described_class.find(:example)).to eq(nil)
+      expect(described_class.find(:example)).to be_nil
     end
 
     it 'to be "1" with ex option' do
@@ -128,7 +128,7 @@ RSpec.describe Lite::Redis::String do
       described_class.create_until(:example, 'hello', 2)
       sleep(3)
 
-      expect(described_class.find(:example)).to eq(nil)
+      expect(described_class.find(:example)).to be_nil
     end
   end
 
@@ -147,7 +147,7 @@ RSpec.describe Lite::Redis::String do
 
   describe '.replace' do
     it 'to be nil' do
-      expect(described_class.replace(:example, 'hello', 6)).to eq(nil)
+      expect(described_class.replace(:example, 'hello', 6)).to be_nil
     end
 
     it 'to be "hello redis"' do
@@ -196,7 +196,7 @@ RSpec.describe Lite::Redis::String do
 
   describe '.reset' do
     it 'to be nil' do
-      expect(described_class.reset(:example)).to eq(nil)
+      expect(described_class.reset(:example)).to be_nil
     end
 
     it 'to be "0"' do

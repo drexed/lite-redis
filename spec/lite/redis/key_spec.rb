@@ -6,13 +6,13 @@ RSpec.describe Lite::Redis::Key do
 
   describe '.exists?' do
     it 'to be false' do
-      expect(described_class.exists?(:example)).to eq(false)
+      expect(described_class.exists?(:example)).to be(false)
     end
 
     it 'to be true' do
       Lite::Redis::String.create(:example, 'hello')
 
-      expect(described_class.exists?(:example)).to eq(true)
+      expect(described_class.exists?(:example)).to be(true)
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe Lite::Redis::Key do
       Lite::Redis::String.create(:example, 'hello')
       described_class.rename(:example, :example2)
 
-      expect(Lite::Redis::String.find(:example)).to eq(nil)
+      expect(Lite::Redis::String.find(:example)).to be_nil
     end
 
     it 'to be "hello"' do
@@ -58,7 +58,7 @@ RSpec.describe Lite::Redis::Key do
       Lite::Redis::String.create(:example, 'hello')
       described_class.rename!(:example, :example2)
 
-      expect(Lite::Redis::String.find(:example)).to eq(nil)
+      expect(Lite::Redis::String.find(:example)).to be_nil
     end
 
     it 'to be "world"' do
@@ -74,7 +74,7 @@ RSpec.describe Lite::Redis::Key do
       Lite::Redis::String.create(:example, 'hello')
       described_class.destroy(:example)
 
-      expect(Lite::Redis::String.find(:example)).to eq(nil)
+      expect(Lite::Redis::String.find(:example)).to be_nil
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe Lite::Redis::Key do
       described_class.expire(:example, 2)
       sleep(3)
 
-      expect(Lite::Redis::String.find(:example)).to eq(nil)
+      expect(Lite::Redis::String.find(:example)).to be_nil
     end
   end
 
@@ -105,7 +105,7 @@ RSpec.describe Lite::Redis::Key do
       described_class.expire_in(:example, 2)
       sleep(3)
 
-      expect(Lite::Redis::String.find(:example)).to eq(nil)
+      expect(Lite::Redis::String.find(:example)).to be_nil
     end
   end
 

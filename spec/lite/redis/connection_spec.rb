@@ -12,7 +12,7 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.connected?' do
     it 'to be true' do
-      expect(described_class.connected?).to eq(true)
+      expect(described_class.connected?).to be(true)
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe Lite::Redis::Connection do
 
   describe '.disconnect' do
     it 'to be nil' do
-      expect(described_class.disconnect).to eq(nil)
+      expect(described_class.disconnect).to be_nil
     end
   end
 

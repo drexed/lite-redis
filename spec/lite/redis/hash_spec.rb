@@ -6,7 +6,7 @@ RSpec.describe Lite::Redis::Hash do
 
   describe '.find' do
     it 'to be nil' do
-      expect(described_class.find(:example, :name)).to eq(nil)
+      expect(described_class.find(:example, :name)).to be_nil
     end
 
     it 'to be "1"' do
@@ -69,13 +69,13 @@ RSpec.describe Lite::Redis::Hash do
     it 'to be false' do
       described_class.create(:example, :name, 'redis')
 
-      expect(described_class.exists?(:example, :bday)).to eq(false)
+      expect(described_class.exists?(:example, :bday)).to be(false)
     end
 
     it 'to be false with both missing keys' do
       described_class.create(:example, :name, 'redis')
 
-      expect(described_class.exists?(:example2, :bday)).to eq(false)
+      expect(described_class.exists?(:example2, :bday)).to be(false)
     end
   end
 
@@ -124,7 +124,7 @@ RSpec.describe Lite::Redis::Hash do
       described_class.create(:example, :name, 'hello')
       described_class.destroy(:example, :name)
 
-      expect(described_class.find(:example, :name)).to eq(nil)
+      expect(described_class.find(:example, :name)).to be_nil
     end
   end
 

@@ -14,7 +14,7 @@ RSpec.describe Lite::Redis::InstallGenerator, type: :generator do
 
   describe '#generator' do
     it 'to be true when sample file exists' do
-      expect(File.exist?(sample_path)).to eq(true)
+      expect(File.exist?(sample_path)).to be(true)
     end
 
     it 'to be the same as the expected file' do

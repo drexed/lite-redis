@@ -113,14 +113,14 @@ RSpec.describe Lite::Redis::Set do
       described_class.create(:example, 'one')
       described_class.create(:example, 'two')
 
-      expect(described_class.value?(:example, 'one')).to eq(true)
+      expect(described_class.value?(:example, 'one')).to be(true)
     end
 
     it 'to be false' do
       described_class.create(:example, 'one')
       described_class.create(:example, 'two')
 
-      expect(described_class.value?(:example, 'three')).to eq(false)
+      expect(described_class.value?(:example, 'three')).to be(false)
     end
   end
 

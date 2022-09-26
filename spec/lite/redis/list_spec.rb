@@ -6,7 +6,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.find' do
     it 'to be nil' do
-      expect(described_class.find(:example)).to eq(nil)
+      expect(described_class.find(:example)).to be_nil
     end
 
     it 'to be "2"' do
@@ -20,7 +20,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.first' do
     it 'to be nil' do
-      expect(described_class.first(:example)).to eq(nil)
+      expect(described_class.first(:example)).to be_nil
     end
 
     it 'to be "three"' do
@@ -50,7 +50,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.last' do
     it 'to be nil' do
-      expect(described_class.last(:example)).to eq(nil)
+      expect(described_class.last(:example)).to be_nil
     end
 
     it 'to be "one"' do
@@ -376,7 +376,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.update' do
     it 'to be nil' do
-      expect(described_class.update(:example, 1, 'v1')).to eq(nil)
+      expect(described_class.update(:example, 1, 'v1')).to be_nil
     end
 
     it 'to be ["four", "five", "three"]' do
@@ -393,7 +393,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.move' do
     it 'to be nil' do
-      expect(described_class.move(:example1, :example2)).to eq(nil)
+      expect(described_class.move(:example1, :example2)).to be_nil
     end
 
     it 'to be "3"' do
@@ -450,7 +450,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.destroy_first' do
     it 'to be nil' do
-      expect(described_class.destroy_first(:example)).to eq(nil)
+      expect(described_class.destroy_first(:example)).to be_nil
     end
 
     it 'to be ["two", "one"]' do
@@ -477,7 +477,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.destroy_last' do
     it 'to be nil' do
-      expect(described_class.destroy_last(:example)).to eq(nil)
+      expect(described_class.destroy_last(:example)).to be_nil
     end
 
     it 'to be ["three", "two"]' do
@@ -504,7 +504,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.destroy_except' do
     it 'to be nil' do
-      expect(described_class.destroy_except(:example, 2, 3)).to eq(nil)
+      expect(described_class.destroy_except(:example, 2, 3)).to be_nil
     end
 
     it 'to be ["three", "two"]' do
@@ -521,7 +521,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.destroy_all' do
     it 'to be nil' do
-      expect(described_class.destroy_all(:example)).to eq(nil)
+      expect(described_class.destroy_all(:example)).to be_nil
     end
 
     it 'to be []' do
@@ -537,7 +537,7 @@ RSpec.describe Lite::Redis::List do
 
   describe '.pop' do
     it 'to be nil' do
-      expect(described_class.pop(:example)).to eq(nil)
+      expect(described_class.pop(:example)).to be_nil
     end
 
     it 'to be "one"' do

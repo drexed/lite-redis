@@ -18,7 +18,7 @@ RSpec.describe Lite::Redis::Configuration do
       Lite::Redis.configuration.client = 'foo'
       Lite::Redis.reset_configuration!
 
-      expect(Lite::Redis.configuration.client.is_a?(Redis)).to eq(true)
+      expect(Lite::Redis.configuration.client.is_a?(Redis)).to be(true)
     end
   end
 
