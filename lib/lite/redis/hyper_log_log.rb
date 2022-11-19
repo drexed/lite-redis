@@ -2,10 +2,19 @@
 
 module Lite
   module Redis
-    class HyperLogLog < Lite::Redis::Base
+    class HyperLogLog < Base
 
-      extend Lite::Redis::HyperLogLogHelper
-      include Lite::Redis::HyperLogLogHelper
+      def create(key, member)
+        client.pfadd(key.to_s, member)
+      end
+
+      def count(*args)
+        client.pfcount(*args)
+      end
+
+      def merge(key, *keys)
+        client.pfmerge(key.to_s, *keys)
+      end
 
     end
   end

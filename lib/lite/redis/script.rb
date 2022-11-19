@@ -2,10 +2,19 @@
 
 module Lite
   module Redis
-    class Script < Lite::Redis::Base
+    class Script < Base
 
-      extend Lite::Redis::ScriptHelper
-      include Lite::Redis::ScriptHelper
+      def script(command, *args)
+        client.script(command, *args)
+      end
+
+      def eval(*args)
+        client.eval(:eval, *args)
+      end
+
+      def evalsha(*args)
+        client.eval(:evalsha, *args)
+      end
 
     end
   end
