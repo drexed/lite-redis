@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2022-11-19
 ### Changed
 - Improved docs
-- Improve internal setup
+- Improved internal setup
 - Improved rubocop setup
 
 ## [1.2.0] - 2022-09-26
