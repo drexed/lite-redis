@@ -45,5 +45,7 @@ Style/Documentation:
   Enabled: false
 Style/ExpandPathArguments:
   Enabled: false
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
 Style/StringLiterals:
   EnforcedStyle: double_quotes
