@@ -17,19 +17,19 @@ module Lite
       private
 
       def append?(order)
-        order.to_s == 'append'
+        order.to_s == "append"
       end
 
       def milliseconds?(format)
-        format.to_s == 'milliseconds'
+        format.to_s == "milliseconds"
       end
 
       def prepend?(order)
-        order.to_s == 'prepend'
+        order.to_s == "prepend"
       end
 
       def seconds?(format)
-        format.to_s == 'seconds'
+        format.to_s == "seconds"
       end
 
       def stringify_keys(*keys)

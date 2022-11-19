@@ -33,7 +33,7 @@ module Lite
       end
 
       def create(key, args)
-        client.sadd(key.to_s, args)
+        client.sadd?(key.to_s, args)
       end
 
       def create_combination(key, *args)
@@ -53,7 +53,7 @@ module Lite
       end
 
       def destroy(key, args)
-        client.srem(key.to_s, args)
+        client.srem?(key.to_s, args)
       end
 
       def destroy_random(key)

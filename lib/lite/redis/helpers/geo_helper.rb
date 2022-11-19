@@ -16,7 +16,7 @@ module Lite
         client.geopos(key.to_s, member)
       end
 
-      def distance(key, member1, member2, unit = 'm')
+      def distance(key, member1, member2, unit = "m")
         client.geodist(key.to_s, member1, member2, unit.to_s)
       end
 

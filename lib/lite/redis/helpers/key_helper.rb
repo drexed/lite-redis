@@ -66,7 +66,7 @@ module Lite
         client.dump(key.to_s)
       end
 
-      def match(pattern = '*')
+      def match(pattern = "*")
         client.keys(pattern.to_s)
       end
 

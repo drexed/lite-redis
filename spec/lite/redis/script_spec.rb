@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe Lite::Redis::Script do
 
-  describe '.script' do
+  describe ".script" do
     # TODO
   end
 
-  describe '.eval' do
+  describe ".eval" do
     # TODO
   end
 
-  describe '.evalsha' do
+  describe ".evalsha" do
     # TODO
   end
 

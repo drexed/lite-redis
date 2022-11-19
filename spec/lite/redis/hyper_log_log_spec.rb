@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe Lite::Redis::HyperLogLog do
 
-  describe '.create' do
+  describe ".create" do
     # TODO
   end
 
-  describe '.count' do
+  describe ".count" do
     # TODO
   end
 
-  describe '.merge' do
+  describe ".merge" do
     # TODO
   end
 
