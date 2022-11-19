@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "redis" unless defined?(Redis)
+
 require "generators/lite/redis/install_generator" if defined?(Rails::Generators)
 
 require "lite/redis/railtie" if defined?(Rails::Railtie)

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "redis" unless defined?(Redis)
-
 module Lite
   module Redis
 
