@@ -1,14 +1,18 @@
 # Hash
 
-#### Usage
+## Usage
 
-Please read the corresponding [helper](https://github.com/drexed/lite-redis/blob/master/lib/lite/redis/helpers/hash_helper.rb) file to see all available methods.
+Please read the corresponding [class](https://github.com/drexed/lite-redis/blob/master/lib/lite/redis/hash.rb) file to see all available methods.
 
 Please read the corresponding [spec](https://github.com/drexed/lite-redis/blob/master/spec/lite/redis/hash_spec.rb) file to see more example usages.
 
+#### Instance
 ```ruby
 hash = Lite::Redis::Hash.new
-hash.create(:example, :name, 1)
+hash.find(:example, :name) #=> 1
+```
 
-Lite::Redis::Hash.find(:example, :name)  #=> 1
+#### Class
+```ruby
+Lite::Redis::Hash.find(:example, :name) #=> 1
 ```

@@ -5,8 +5,6 @@
 
 Lite::Redis is a library for accessing Redis with an ActiveRecord like ORM interface.
 
-**NOTE:** If you are coming from `ActiveRedisDB`, please read the [port](#port) section.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -29,12 +27,11 @@ Or install it yourself as:
 * [Pooling](#pooling)
 * [Commands](#commands)
 * [Callers](#callers)
-* [Port](#port)
 
 ## Configurations
 
-`rails g lite:redis:install` will generate the following file:
-`../config/initalizers/lite_redis.rb`
+`rails g lite:redis:install` will generate the following file in your application root:
+`config/initalizers/lite_redis.rb`
 
 ```ruby
 Lite::Redis.configure do |config|
@@ -69,25 +66,21 @@ end
 
 ## Callers
 
-There are two ways to access Redis commands, single class and multiple instance access.
-Multiple instance access reuses a Redis connection for better performance.
+Redis commands could be via a class or instance call.
+Instance access reuses a Redis connection for better performance.
 
+#### Instance
 ```ruby
-# Single class access
-Lite::Redis::String.create(:example, '123')
-Lite::Redis::String.find(:example)
-
-# - or -
-
-# Multiple instance access
 string = Lite::Redis::String.new
 string.create(:example, '123')
 string.find(:example)
 ```
 
-## Port
-
-`Lite::Redis` is a near compatible port of [ActiveRedisDB](https://github.com/drexed/active_redis_db).
+#### Class
+```ruby
+Lite::Redis::String.create(:example, '123')
+Lite::Redis::String.find(:example)
+```
 
 ## Development
 
@@ -97,7 +90,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lite-redis. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/drexed/lite-redis. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -105,4 +98,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Lite::Redis project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/lite-redis/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Lite::Redis project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/drexed/lite-redis/blob/master/CODE_OF_CONDUCT.md).

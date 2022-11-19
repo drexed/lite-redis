@@ -1,14 +1,18 @@
 # Key
 
-#### Usage
+## Usage
 
-Please read the corresponding [helper](https://github.com/drexed/lite-redis/blob/master/lib/lite/redis/helpers/key_helper.rb) file to see all available methods.
+Please read the corresponding [class](https://github.com/drexed/lite-redis/blob/master/lib/lite/redis/key.rb) file to see all available methods.
 
 Please read the corresponding [spec](https://github.com/drexed/lite-redis/blob/master/spec/lite/redis/key_spec.rb) file to see more example usages.
 
+#### Instance
 ```ruby
 key = Lite::Redis::Key.new
-key.create(:example, 'hello')      #=> 'OK'
+key.exists?(:example) #=> true
+```
 
+#### Class
+```ruby
 Lite::Redis::Key.exists?(:example) #=> true
 ```
